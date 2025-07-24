@@ -1,0 +1,387 @@
+[2025-07-23T19:36:32.439140
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int), gpa(float))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:22:14.350331
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:23:38.179694
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:24:04.735928
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:26:56.365568
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:29:59.468520
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int), gpa(float))
+Question: Show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:30:03.565205
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int), gpa(float))
+Question: Find students with GPA above 3.7
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE gpa > 3.7;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:30:06.361361
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int), gpa(float))
+Question: What is the average GPA?
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT AVG(gpa) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:30:08.890070
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), name(text), age(int), gpa(float))
+Question: Show students ordered by age
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students ORDER BY age;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:42:04.987618
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: show students with roll 31
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE roll = 31;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:42:35.297621
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:42:55.469163
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: what is the maximum roll in table
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT MAX(roll) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:45:12.812891
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:45:35.417304
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: bring the rows of roll 31 only
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE roll = 31;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:47:13.936771
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: show all students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:47:27.710901
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: bring all students named kunaal
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE name = 'kunaal';
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:53:10.800224
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: give me all teachers
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM teachers;
+--------------------------------------------------------------------------------
+
+[2025-07-24T05:53:42.851415
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: give me students whuch has null
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE roll IS NULL OR name IS NULL;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:15:00.211657
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: show the branch m1 teachers
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT branch FROM teachers WHERE id IN (SELECT id FROM teachers WHERE name = 'm1');
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:15:12.390894
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: show all teachers
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM teachers;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:15:23.937768
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: show all teachers whos branch is m1
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM teachers WHERE branch = 'm1';
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:15:31.500590
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: show all teachers whos branch is M1
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM teachers WHERE branch = 'M1';
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:15:57.153688
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: show all students with name kunaal
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE name = 'kunaal';
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:21:22.796077
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give all colleges
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:21:39.792032
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give all colleges
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:35:27.598525
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: give me max roll in students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT MAX(roll) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:35:43.163183
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: give me unique students
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT DISTINCT name FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:36:08.419953
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: what is the total roll per student
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT id, SUM(roll) as total_roll
+FROM students
+GROUP BY id;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:36:23.914258
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: what is the total roll per student name
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name, SUM(roll) as total_roll
+FROM students
+GROUP BY name;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:36:45.957665
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: what is the total roll per student name in roll number ascending order
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name, SUM(roll) as TotalRoll, GROUP BY name ORDER BY TotalRoll, roll ASC;
+
+This query groups the students by name, calculates the total roll for each group, and orders the results by the total roll in ascending order and then by roll number.
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:37:07.229748
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(id(int), roll(int), name(text))
+Question: what is the total roll per student name in roll order
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name, SUM(roll) as total_roll
+FROM students
+GROUP BY name
+ORDER BY total_roll, name;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:52:38.032371
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: display all products
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:53:53.378225
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: display all products
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+
+[2025-07-24T06:54:07.489774
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: give me all products of fruits
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products WHERE type = 'fruit';
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:43:52.497184
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: giev all colleges
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges;
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:44:08.161252
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: giev all products
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:45:02.873087
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: which college is top ranked
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges WHERE rank = (SELECT MAX(rank) FROM colleges);
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:45:17.309539
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: which college is top
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:45:42.173584
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: which college is top rank means 1st rank is top like that
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges WHERE rank = (SELECT MIN(rank) FROM colleges);
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:46:07.306813
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: whaht is the college name with id 102
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges WHERE id = 102;
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:46:39.297756
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: show everything
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+
+[2025-07-24T07:47:01.620919
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: give all vegetables only
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products WHERE type = 'vegetable';
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,442 @@
+2025-07-24 00:55:34,480 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 01:00:16,395 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 01:00:16,458 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 01:06:20,447 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 01:06:20,507 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 01:06:26,805 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 01:06:26,809 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 01:06:32,440 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 106, in query_table
+    sql = await openrouter_client.generate_sql(prompt)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object str can't be used in 'await' expression
+2025-07-24 01:11:49,131 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 01:11:54,815 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 01:11:54,877 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:00:06,098 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:00:06,189 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:02:12,470 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:02:12,528 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:02:42,472 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:02:42,518 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:04:59,531 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:04:59,591 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:05:04,715 - app.routers.schema - ERROR - Error dropping table 'students'
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/schema.py", line 110, in delete_table
+    model = schema_cache.get_table_model(table_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SchemaCache' object has no attribute 'get_table_model'. Did you mean: 'get_table_schema'?
+2025-07-24 10:06:27,597 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:06:27,658 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:06:44,165 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 10:06:44,170 - app.db.dynamic_models - ERROR - Error creating table students: (sqlite3.OperationalError) index ix_students_id already exists
+[SQL: CREATE INDEX ix_students_id ON students (id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 10:06:44,170 - app.routers.create_table - ERROR - Error creating table
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: index ix_students_id already exists
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/create_table.py", line 108, in create_table
+    model_class = create_dynamic_model(request.table_name, columns)
+  File "/Applications/NL2SQL/app/db/dynamic_models.py", line 120, in create_dynamic_model
+    model_class.__table__.create(bind=engine, checkfirst=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py", line 1288, in create
+    bind._run_ddl_visitor(ddl.SchemaGenerator, self, checkfirst=checkfirst)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 3248, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2455, in _run_ddl_visitor
+    ).traverse_single(element)
+      ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/visitors.py", line 664, in traverse_single
+    return meth(obj, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/ddl.py", line 1024, in visit_table
+    self.traverse_single(index, create_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/visitors.py", line 664, in traverse_single
+    return meth(obj, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/ddl.py", line 1061, in visit_index
+    CreateIndex(index)._invoke_with(self.connection)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/ddl.py", line 321, in _invoke_with
+    return bind.execute(self)
+           ~~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/ddl.py", line 187, in _execute_on_connection
+    return connection._execute_ddl(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1526, in _execute_ddl
+    ret = self._execute_context(
+        dialect,
+    ...<4 lines>...
+        compiled,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) index ix_students_id already exists
+[SQL: CREATE INDEX ix_students_id ON students (id)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 10:08:34,176 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:08:34,234 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:08:58,036 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:08:58,095 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:27:59,779 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:28:00,057 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:31:42,290 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:31:42,348 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:31:59,337 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:31:59,895 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:31:59,952 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:32:14,198 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:32:14,764 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:32:14,825 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:32:26,551 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:32:27,097 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:32:45,598 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:33:49,231 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:37:36,407 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:37:44,484 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:37:46,090 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:37:47,522 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:37:47,588 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:43:32,806 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int'}
+2025-07-24 10:51:17,407 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:51:17,977 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:51:18,037 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:51:26,628 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int'}
+2025-07-24 10:52:14,352 - app.routers.query - ERROR - Error executing SQL query: Textual SQL expression 'SELECT * FROM students;' should be explicitly declared as text('SELECT * FROM students;')
+2025-07-24 10:52:14,352 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 16, in execute_sql_query
+    result = db.execute(sql, params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2149, in _execute_internal
+    statement = coercions.expect(roles.StatementRole, statement)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/coercions.py", line 395, in expect
+    resolved = impl._literal_coercion(
+        element, argname=argname, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/coercions.py", line 621, in _literal_coercion
+    return self._text_coercion(element, argname, **kw)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/coercions.py", line 614, in _text_coercion
+    return _no_text_coercion(element, argname)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/coercions.py", line 584, in _no_text_coercion
+    raise exc_cls(
+    ...<7 lines>...
+    ) from err
+sqlalchemy.exc.ArgumentError: Textual SQL expression 'SELECT * FROM students;' should be explicitly declared as text('SELECT * FROM students;')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 84, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: Textual SQL expression 'SELECT * FROM students;' should be explicitly declared as text('SELECT * FROM students;')
+2025-07-24 10:53:20,008 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:53:20,580 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:53:21,882 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:53:21,940 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:53:38,180 - app.routers.query - ERROR - Error executing SQL query: name 'text' is not defined
+2025-07-24 10:53:38,180 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 16, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+                        ^^^^
+NameError: name 'text' is not defined. Did you mean: 'next'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 84, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: name 'text' is not defined
+2025-07-24 10:53:53,969 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:53:54,529 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:53:54,588 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:55:47,291 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int'}
+2025-07-24 10:57:25,047 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int'}
+2025-07-24 10:57:25,570 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 10:59:27,469 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:59:28,056 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:59:28,121 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:59:31,151 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:59:31,580 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:59:31,626 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:59:50,045 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 10:59:50,498 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 10:59:50,544 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 10:59:55,828 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 10:59:56,338 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 10:59:56,343 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 11:09:51,032 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:09:51,613 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:09:51,672 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:10:07,595 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-24 11:10:38,599 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 11:11:19,044 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 11:11:40,976 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 11:14:35,330 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:14:35,904 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:14:35,963 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:14:48,687 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:14:49,173 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:14:49,230 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:14:52,360 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:14:52,835 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:14:52,880 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:16:13,204 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 11:17:00,051 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 11:20:10,475 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:20:11,085 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:20:11,150 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:20:25,805 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:20:26,371 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:20:26,428 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:20:44,613 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:20:45,196 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:20:45,259 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:21:42,348 - app.db.dynamic_models - INFO - Created table: teachers with columns: {'id': 'int', 'name': 'text', 'branch': 'text'}
+2025-07-24 11:22:14,688 - app.db.dynamic_models - INFO - Created table: teachers with columns: {'id': 'int', 'name': 'text', 'branch': 'text'}
+2025-07-24 11:22:53,767 - app.db.dynamic_models - INFO - Created table: teachers with columns: {'id': 'int', 'name': 'text', 'branch': 'text'}
+2025-07-24 11:40:06,588 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:40:07,525 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:40:07,785 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:42:56,863 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:42:57,467 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:42:57,529 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:43:50,465 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
+2025-07-24 11:44:05,794 - app.routers.insert_data - ERROR - Error parsing CSV data: CSV data is empty
+2025-07-24 11:49:54,026 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:49:54,760 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:49:54,825 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:50:33,229 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:50:33,818 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:50:33,879 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:52:53,218 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:52:53,866 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:52:53,934 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:53:28,994 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 11:53:29,594 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 11:53:29,653 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 11:54:30,927 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:01:42,445 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:01:43,051 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:01:43,111 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:02:49,392 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:02:49,969 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:02:50,028 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:04:03,096 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:04:03,699 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:04:03,759 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:04:05,579 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:04:06,064 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:04:06,111 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:04:32,671 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:04:33,253 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:04:33,311 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:06:45,960 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) near "GROUP": syntax error
+[SQL: SELECT name, SUM(roll) as TotalRoll, GROUP BY name ORDER BY TotalRoll, roll ASC;
+
+This query groups the students by name, calculates the total roll for each group, and orders the results by the total roll in ascending order and then by roll number.]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 12:06:45,960 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "GROUP": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "GROUP": syntax error
+[SQL: SELECT name, SUM(roll) as TotalRoll, GROUP BY name ORDER BY TotalRoll, roll ASC;
+
+This query groups the students by name, calculates the total roll for each group, and orders the results by the total roll in ascending order and then by roll number.]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) near "GROUP": syntax error
+[SQL: SELECT name, SUM(roll) as TotalRoll, GROUP BY name ORDER BY TotalRoll, roll ASC;
+
+This query groups the students by name, calculates the total roll for each group, and orders the results by the total roll in ascending order and then by roll number.]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 12:08:11,394 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:08:12,001 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:08:12,058 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:09:36,825 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:09:37,429 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:09:37,489 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:09:51,111 - app.routers.insert_data - ERROR - Error parsing CSV data: CSV data is empty
+2025-07-24 12:10:55,951 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:10:56,581 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:10:56,647 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:12:27,276 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:12:27,873 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:12:27,932 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:12:42,203 - app.routers.insert_data - ERROR - Error parsing CSV data: CSV data is empty
+2025-07-24 12:18:30,133 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:18:30,747 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:18:30,806 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:19:21,929 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:19:22,549 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:19:22,608 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:20:53,447 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:20:54,059 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:20:54,118 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:21:55,851 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:21:56,451 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:21:56,511 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 12:22:21,258 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:22:58,711 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:23:10,515 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:23:26,362 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:23:46,763 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 12:24:46,097 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 12:24:46,737 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 12:24:46,808 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 13:12:58,305 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 13:13:06,637 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 13:13:06,714 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 13:14:22,307 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
+2025-07-24 13:14:32,373 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
+2025-07-24 13:14:43,649 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
+2025-07-24 13:23:16,337 - root - INFO - NL2SQL Playground API is shutting down...
