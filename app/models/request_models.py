@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field, HttpUrl, validator
-from typing import Optional, Union, Dict, List, Any
+from pydantic import BaseModel, Field, validator
+from typing import Optional, Dict, List, Any
 from enum import Enum
 
 class TableDefinitionType(str, Enum):
@@ -22,13 +22,13 @@ class CreateTableRequest(BaseModel):
         None,
         description="CSV data as a string. First row should be column names."
     )
-    
+
     @validator('nl_definition', always=True)
     def validate_definition(cls, v, values):
         if values.get('definition_type') == TableDefinitionType.NATURAL_LANGUAGE and not v:
             raise ValueError("nl_definition is required when definition_type is 'natural_language'")
         return v
-    
+
     @validator('csv_data', always=True)
     def validate_csv(cls, v, values):
         if values.get('definition_type') == TableDefinitionType.CSV and not v:
@@ -41,33 +41,33 @@ class InsertDataRequest(BaseModel):
     data: str = Field(..., description="CSV formatted data to insert")
 
 class QueryRequest(BaseModel):
-        """Request model for querying one or more tables with natural language."""
-        table_names: Optional[List[str]] = Field(None, description="Names of the tables to query")
-        table_name: Optional[str] = Field(None, description="Single table (legacy, for backward compatibility)")
-        question: str = Field(..., description="Natural language question to convert to SQL")
+    """Request model for querying one or more tables with natural language."""
+    table_names: Optional[List[str]] = Field(None, description="Names of the tables")
+    table_name: Optional[str] = Field(None, description="Single table (legacy)")
+    question: str = Field(..., description="NL question")
+    explain: Optional[bool] = Field(False, description="Include step-by-step reasoning?")  # NEW!
 
-        # For backward compatibility:
-        @validator('table_names', pre=True, always=True)
-        def ensure_table_names(cls, v, values):
-            # Automatic upgrade: if table_name provided, make table_names = [table_name]
-            if v is None and 'table_name' in values and values['table_name']:
-                return [values['table_name']]
-            return v
+    @validator('table_names', pre=True, always=True)
+    def ensure_table_names(cls, v, values):
+        if v is None and 'table_name' in values and values['table_name']:
+            return [values['table_name']]
+        return v
 
-        class Config:
-            schema_extra = {
-                "example": {
-                    "table_names": ["students", "colleges"],
-                    "question": "Show each student and their college name"
-                }
+    class Config:
+        schema_extra = {
+            "example": {
+                "table_names": ["students", "colleges"],
+                "question": "Show each student and their college name",
+                "explain": True
             }
-    
+        }
+
 class QueryResponse(BaseModel):
-    """Response model for query results."""
-    sql: str = Field(..., description="The SQL query that was generated")
-    results: List[Dict[str, Any]] = Field(..., description="Query results as a list of dictionaries")
-    success: bool = Field(True, description="Whether the query was successful")
-    error: Optional[str] = Field(None, description="Error message if the query failed")
+    sql: str = Field(..., description="The SQL query")
+    results: List[Dict[str, Any]] = Field(..., description="Query results")
+    success: bool = Field(True)
+    explanation: Optional[str] = Field(None, description="Step-by-step reasoning")  # NEW!
+    error: Optional[str] = Field(None)
 
 class TableSchemaResponse(BaseModel):
     """Response model for table schema."""
@@ -79,7 +79,7 @@ class ErrorResponse(BaseModel):
     """Standard error response."""
     success: bool = Field(False, description="Always false for error responses")
     error: str = Field(..., description="Error message")
-    
+
     @classmethod
     def from_exception(cls, e: Exception):
         """Create an error response from an exception."""

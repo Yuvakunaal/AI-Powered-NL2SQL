@@ -62,32 +62,30 @@ def insert_row(table, values):
         except Exception:
             return False, resp.text
 
-def run_query(tbls, nl_query):
-    # tbls: can be string (single) or list
+def run_query(tbls, nl_query, explain=False):
     if isinstance(tbls, str):
         tbls = [tbls]
     elif not isinstance(tbls, list):
         tbls = []
-
     payload = {
         "table_names": tbls,
-        "question": nl_query
+        "question": nl_query,
+        "explain": explain
     }
-
     try:
         resp = requests.post(f"{API_BASE}/query", headers=HEADERS, json=payload)
         if resp.status_code == 200:
             d = resp.json()
-            return d.get("sql", ""), d.get("results", []), None
+            return d.get("sql", ""), d.get("results", []), d.get("explanation", ""), None
         else:
-            # Try to parse detailed error message, fallback to raw text
             try:
                 err = resp.json().get("detail") or resp.json().get("error")
             except Exception:
                 err = resp.text
-            return "", [], err
+            return "", [], "", err
     except Exception as e:
-        return "", [], str(e)
+        return "", [], "", str(e)
+
 
 
 # Gradio UI tabs/app logic
@@ -238,9 +236,11 @@ def build_query_tab():
         tbl_selector = gr.Dropdown(choices=list(get_tables().keys()), multiselect=True)
         schema_md = gr.Markdown()
         nl_query = gr.Textbox(label="Ask in natural language", lines=1)
+        explain_checkbox = gr.Checkbox(label="Show step-by-step explanation", value=False)
         run_btn = gr.Button("Run Query 🤖")
         out_sql = gr.Textbox(label="Generated SQL", interactive=False)
         out_results = gr.Dataframe(label="Results")
+        out_explanation = gr.Markdown()
         out_msg = gr.Markdown()
 
         def refresh_query_tables():
@@ -266,21 +266,33 @@ def build_query_tab():
 
         tbl_selector.change(on_tbl_select, tbl_selector, schema_md)
 
-        def query_run(tbls, question):
-            sql, results, err = run_query(tbls, question)
+        def query_run(tbls, question, explain):
+            sql, results, explanation, err = run_query(tbls, question, explain)
             if err:
-                return "", [], f"❌ {err}"
-            if results and isinstance(results, list) and results:
+                return "", [], "", f"❌ {err}"
+
+            # Only process table if there are any results AND the first row is a dict
+            if (
+                results
+                and isinstance(results, list)
+                and len(results) > 0
+                and isinstance(results[0], dict)
+            ):
                 cols = list(results[0].keys())
                 data = [[row.get(k, "") for k in cols] for row in results]
-                return sql, gr.update(value=data, headers=cols), ""
+                return sql, gr.update(value=data, headers=cols), explanation or "", ""
             else:
-                return sql, [], ""
+                # No results or not a list of dicts -- return empty table and explanation if present
+                return sql, [], explanation or "", ""
+
+
         run_btn.click(
             query_run,
-            inputs=[tbl_selector, nl_query],
-            outputs=[out_sql, out_results, out_msg]
+            inputs=[tbl_selector, nl_query, explain_checkbox],
+            outputs=[out_sql, out_results, out_explanation, out_msg]
         )
+
+
 
 
 # App Layout

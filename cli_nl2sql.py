@@ -3,7 +3,7 @@
 import requests
 import sys
 import json
-from tabulate import tabulate 
+from tabulate import tabulate
 from colorama import init, Fore, Style
 
 init(autoreset=True)
@@ -117,21 +117,30 @@ def run_query():
     if tbl_input.strip():
         multi_tables = [t.strip() for t in tbl_input.split(",") if t.strip()]
     else:
-        multi_tables = tables # use all tables if blank
+        multi_tables = tables  # use all tables if blank
+    # Ask user if they want step-by-step explanation
+    print(YELLOW + "Do you want step-by-step explainability (y/N)?")
+    explain = input_colored(">>>").lower() in ["y", "yes"]
     payload = {
         "table_names": multi_tables,
-        "question": question
+        "question": question,
+        "explain": explain
     }
     resp = requests.post(f"{BASE_URL}/query", headers=HEADERS, json=payload)
     try:
         d = resp.json()
         if "results" in d:
+            # Print explanation if present
+            if d.get("explanation"):
+                print(YELLOW + "\n--- Reasoning ---\n" + d["explanation"] + "\n")
             results = d["results"]
             if not results:
                 print(RED + "No rows found.")
             else:
                 print(GREEN + "\nResult Table:")
                 print(tabulate(results, headers="keys", tablefmt="fancy_grid"))
+            # Print SQL always
+            print(MAGENTA + "\nSQL:\n" + d.get("sql", "") + RESET)
         else:
             print(d)
     except Exception:
