@@ -83,7 +83,7 @@ Flow:
 
 ---
 
-## 💻 CLI Interface
+## ⌨️ CLI Interface
 
 Run using:
 
