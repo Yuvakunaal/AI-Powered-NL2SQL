@@ -2262,3 +2262,59 @@ SQL:
 Generated SQL: SELECT * FROM products;
 --------------------------------------------------------------------------------
 
+[2025-07-25T18:50:47.427644
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Show all students
+SQL:
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:50:51.089077
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Find students with GPA above 3.7
+SQL:
+Generated SQL: SELECT * FROM students WHERE gpa > 3.7;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:50:52.468278
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+What is the average GPA?
+SQL:
+Generated SQL: SELECT AVG(gpa) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:50:53.770220
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Show students ordered by age
+SQL:
+Generated SQL: SELECT * FROM students ORDER BY age;
+--------------------------------------------------------------------------------
+

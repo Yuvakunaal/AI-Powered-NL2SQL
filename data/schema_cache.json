@@ -31,21 +31,20 @@
     },
     "created_at": "2025-07-24T10:11:16.083324"
   },
-  "students": {
-    "columns": {
-      "STUDENT_ID": "int",
-      "FIRST_NAME": "text",
-      "LAST_NAME": "text",
-      "GPA": "float",
-      "MAJOR": "text"
-    },
-    "created_at": "2025-07-24T10:57:11.920445"
-  },
   "users": {
     "columns": {
       "id": "int",
       "username": "text"
     },
     "created_at": "2025-07-24T15:39:09.185543"
+  },
+  "students": {
+    "columns": {
+      "id": "int",
+      "name": "text",
+      "age": "int",
+      "gpa": "float"
+    },
+    "created_at": "2025-07-25T18:50:45.261079"
   }
 }

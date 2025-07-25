@@ -65,6 +65,24 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 
 ---
 
+## 💻 Gradio Interface
+
+Run using:
+
+```bash
+python gradio_app.py
+```
+
+Flow:
+
+1. Launches a web-based UI for interactive usage.
+2. Create tables by entering table name, number of fields, and field details.
+3. Insert rows using dynamically generated forms based on table schema.
+4. Query selected table/s using natural language.
+5. View SQL query and output results directly in the web interface.
+
+---
+
 ## 💻 CLI Interface
 
 Run using:

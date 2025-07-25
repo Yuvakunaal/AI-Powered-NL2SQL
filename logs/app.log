@@ -3611,3 +3611,6 @@ ValueError: Only SELECT queries are allowed.
 2025-07-26 00:15:03,967 - root - INFO - NL2SQL Playground API is shutting down...
 2025-07-26 00:15:04,816 - app.db.dynamic_models - INFO - Database initialized
 2025-07-26 00:15:04,895 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:20:44,701 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-26 00:20:45,238 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
+2025-07-26 00:20:45,261 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'name': 'text', 'age': 'int', 'gpa': 'float'}
