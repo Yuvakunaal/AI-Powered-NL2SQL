@@ -2248,3 +2248,17 @@ ORDER BY ABS(GPA - AVG(GPA))
 LIMIT 1;
 --------------------------------------------------------------------------------
 
+[2025-07-25T18:46:51.910204
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+products(id(int), name(text), type(text))
+Relationships:
+None
+Question:
+list all products
+SQL:
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+

@@ -53,9 +53,12 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 ### ❓ Query
 - Select a table
 - Ask a question like:  
-  `"What is the average GPA?"`
+  `"What is the average GPA?"`  
+  `"Which students scored above 90 in Math?"`  
 - Backend uses OpenRouter → Mistral-7B to convert to SQL:  
-  `SELECT AVG(gpa) FROM students;`
+  `SELECT AVG(gpa) FROM students;`  
+  `SELECT students.name FROM students JOIN scores ON students.id = scores.student_id WHERE scores.math > 90;`
+- Supports queries with joins for multi-table operations.
 - UI shows:
   - Generated SQL
   - Output table with results
@@ -85,7 +88,7 @@ Flow:
 |--------|----------|-------------|
 | POST   | `/api/create_table` | Create SQL table from NL column description |
 | POST   | `/api/insert_data`  | Insert rows into table (`table_name`, `data`) |
-| POST   | `/api/query`        | Convert natural language → SQL → return results |
+| POST   | `/api/query`        | Convert natural language → SQL (including joins) → return results |
 | GET    | `/api/schema/{tbl}` | View schema of one table |
 | GET    | `/api/schemas`      | List all tables & their schemas |
 | DELETE | `/api/schema/{tbl}` | Drop a specific table |
@@ -131,7 +134,7 @@ Tests the complete flow: table creation → data insertion → NL query → resu
 - ✅ LLM prompt engineering (OpenRouter, Mistral-7B)
 - ✅ Dynamic SQL model generation via SQLAlchemy
 - ✅ REST API architecture with FastAPI
-- ✅ Real-time NL to SQL translation & output
+- ✅ Real-time NL to SQL translation & output (including joins)
 - ✅ Full-stack testing and validations
 - ✅ Gradio UI & CLI UX with Colorama
 
@@ -148,7 +151,6 @@ Tests the complete flow: table creation → data insertion → NL query → resu
 
 ## 💡 Future Enhancements
 
-- Add JOIN support in NL queries
 - Allow CSV upload for bulk inserts
 - Table editing or column renaming
 - LLM output confidence and SQL explanation
