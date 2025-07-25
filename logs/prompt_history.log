@@ -385,3 +385,1866 @@ SQL:
 Generated SQL: SELECT * FROM products WHERE type = 'vegetable';
 --------------------------------------------------------------------------------
 
+[2025-07-24T09:35:13.211715
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: show all products
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:36:38.241376
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: giuve me all vegetables
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products WHERE type = 'vegetable';
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:37:47.418163
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: products(id(int), name(text), type(text))
+Question: give me all greceries
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM products WHERE type = 'grocery';
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:38:24.135773
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me 1st top ranked college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges WHERE rank = (SELECT MIN(rank) FROM colleges);
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:38:32.114892
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me top ranked college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:38:46.488740
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me top ranked college, rank means 1,2,3,...
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:39:00.886543
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me 1st top ranked college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges WHERE rank = (SELECT MIN(rank) FROM colleges);
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:39:14.796410
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me college with name CBIT
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges WHERE name = 'CBIT';
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:40:52.817131
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me top college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:41:05.396243
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me topper college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:41:20.138176
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me number one college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges WHERE rank = 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:41:40.279858
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me number 4 college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges WHERE id = 4;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:42:02.166820
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me rank of BITS
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT rank FROM colleges WHERE name = 'BITS';
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:42:08.952279
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me rank of CBIT
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT rank FROM colleges WHERE name = 'CBIT';
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:42:18.192851
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me ranks of CBIT and CMR
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT rank FROM colleges WHERE name IN ('CBIT', 'CMR');
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:42:34.042292
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me college and ranks of CBIT and CMR
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name, rank FROM colleges WHERE name IN ('CBIT', 'CMR');
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:45:58.422574
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me the top college from table
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:46:10.545118
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me ranked top college
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:46:27.587304
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me table in rank wise ordr
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges ORDER BY rank ASC;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:46:49.211680
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give me table in rank wise desedning order
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM colleges ORDER BY rank DESC;
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:57:01.027414
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is young
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people WHERE DATEDIFF(CURDATE(), dob) < YEAR(CURDATE());
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:57:18.248603
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: which person is young amongst all
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT MIN(dob) FROM people;
+SELECT name FROM people WHERE dob = (SELECT MIN(dob) FROM people);
+--------------------------------------------------------------------------------
+
+[2025-07-24T09:57:43.029414
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: show all members
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM people;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:06:45.522874
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: show all
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM people;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:11:30.139629
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: give me who os younger
+Generate a SQL query to answer the question. Only return the SQL, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people WHERE dob > CURDATE();
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:13:14.268958
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: give me date wise order
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT * FROM people ORDER BY dob ASC;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:13:26.012913
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: give me who born first
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob ASC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:13:33.933538
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is younger
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people
+WHERE dob <= (SELECT MIN(dob) FROM people)
+ORDER BY dob ASC
+LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:13:50.175396
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is order
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:13:59.531530
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is older
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob ASC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:14:13.114886
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is young form whole table
+Generate a SQLite query to answer the question. Only return the SQLite, no explanations or markdown formatting.
+SQL: 
+Generated SQL: SELECT name FROM people WHERE dob >= DATE('now') - INTERVAL '18 years';
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:16:57.760288
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is young among the table
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient MySQL query. Always output SQLite-compliant SQL. For date math:Use DATE('now', '-18 years') instead of INTERVAL, Avoid MySQL/PostgreSQL-specific syntax, Stick to standard SQLite date functionsReturn only the SQL query — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM people WHERE dob > DATE('now', '-18 years');
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:17:18.805302
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is old
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient MySQL query. Always output SQLite-compliant SQL. For date math:Use DATE('now', '-18 years') instead of INTERVAL, Avoid MySQL/PostgreSQL-specific syntax, Stick to standard SQLite date functionsReturn only the SQL query — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people WHERE DATE('now') - dob >= DATE('now', '-18 years');
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:17:30.818618
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: give all
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient MySQL query. Always output SQLite-compliant SQL. For date math:Use DATE('now', '-18 years') instead of INTERVAL, Avoid MySQL/PostgreSQL-specific syntax, Stick to standard SQLite date functionsReturn only the SQL query — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people;
+
+This query will return all records from the 'people' table. If you want to filter the results based on the age (18 years old or older), you can use the following query:
+
+SELECT * FROM people WHERE DATE('now') - dob >= DATE('now', '-18 years');
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:18:47.769758
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: give me whole table
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:18:58.524295
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is young among all
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob ASC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:19:07.354860
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is old among all
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob ASC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:19:16.060833
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: who is young among all
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM people ORDER BY dob ASC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:19:30.724541
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: bring me the one is younger than others
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people WHERE dob > (SELECT MIN(dob) FROM people);
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:19:40.325185
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: bring me the one is older than others
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people WHERE dob < (SELECT MIN(dob) FROM people) LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:19:58.552141
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: people(id(int), name(text), dob(datetime))
+Question: display in date order
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM people ORDER BY dob;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:22:24.247565
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: what is top ranked college
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:22:32.956087
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: what is top 
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:22:45.880620
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: what is top ranked
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT name FROM colleges ORDER BY rank DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:22:55.659729
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: colleges(id(int), name(text), rank(int))
+Question: give ranking in order
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT rank, name FROM colleges ORDER BY rank;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:28:02.200336
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Give all students
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:57:23.230943
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: give all students
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:58:17.145447
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: show me topper of all
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students ORDER BY GPA DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:58:31.026433
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: which subject has highest gpa
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT MAJOR, MAX(GPA) FROM students GROUP BY MAJOR;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:58:42.667239
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: which major has highest gpa
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT MAJOR, AVG(GPA) AS AVG_GPA FROM students GROUP BY MAJOR ORDER BY AVG_GPA DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-24T10:59:06.966233
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: give me all full names
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT FIRST_NAME || ' ' || LAST_NAME FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-24T15:39:49.962446
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: users(id(int), username(text))
+Question: show whats there in table
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM users;
+--------------------------------------------------------------------------------
+
+[2025-07-24T15:40:14.105593
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: users(id(int), username(text))
+Question: remove duplicates from usernames
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT DISTINCT username FROM users;
+--------------------------------------------------------------------------------
+
+[2025-07-24T15:41:01.246543
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: teachers(id(int), name(text), branch(text))
+Question: give me all ids from table
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT id FROM teachers;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:14:07.343285
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: users(id(int), username(text))
+Question: give all users
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM users;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:14:17.074463
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: give all students
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:14:45.954585
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to fetch "FIRST_NAME" from the Student table in upper case and use ALIAS name as STUDENT_NAME.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT UPPER(FIRST_NAME) AS STUDENT_NAME FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:14:59.545525
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to fetch unique values of MAJOR Subjects from Student table.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT DISTINCT MAJOR FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:15:15.014534
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print the first 3 characters of FIRST_NAME from Student table
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT SUBSTR(FIRST_NAME, 1, 3) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:15:31.226002
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to find the position of alphabet ('a') int the first name column 'Shivansh' from Student table.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT INSTR(FIRST_NAME, 'a') FROM students WHERE FIRST_NAME = 'Shivansh'
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:15:48.980511
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print its length.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT COUNT(DISTINCT MAJOR) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:01.690578
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print its length.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT COUNT(DISTINCT MAJOR) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:04.812463
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print its lengths.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT COUNT(DISTINCT MAJOR) as count, MAJOR
+FROM students
+GROUP BY MAJOR;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:16.185637
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print its length.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT COUNT(DISTINCT MAJOR) FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:35.637245
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print each of its length.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT LEN(DISTINCT MAJOR) AS length, MAJOR FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:48.522991
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query that fetches the unique values of MAJOR Subjects from Student table and print each Major 's length.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT COUNT(MAJOR) AS length, MAJOR FROM students GROUP BY MAJOR;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:16:58.527328
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print FIRST_NAME from the Student table after replacing 'a' with 'A
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT REPLACE(FIRST_NAME, 'a', 'A') AS NEW_FIRST_NAME FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:17:08.658337
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print the FIRST_NAME and LAST_NAME from Student table into single column COMPLETE_NAME.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) AS COMPLETE_NAME FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:17:22.088523
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question:  Write a SQL query to print all Student details from Student table order by FIRST_NAME Ascending and MAJOR Subject descending .
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students ORDER BY FIRST_NAME ASC, MAJOR DESC;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:17:52.028126
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print details of the Students with the FIRST_NAME as 'Prem' and 'Shivansh' from Student table.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE FIRST_NAME IN ('Prem', 'Shivansh');
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:18:04.008936
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print details of the Students excluding FIRST_NAME as 'Prem' and 'Shivansh' from Student table.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE FIRST_NAME NOT IN ('Prem', 'Shivansh')
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:18:24.299070
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write a SQL query to print details of the Students whose FIRST_NAME ends with 'a'.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE FIRST_NAME LIKE '%a';
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:18:35.958482
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write an SQL query to print details of the Students whose FIRST_NAME ends with ‘a’ and contains five alphabets.
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:18:50.073648
+Model: mistralai/mistral-7b-instruct
+Prompt: Schema: students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Question: Write an SQL query to print details of the Students whose FIRST_NAME ends with ‘a’ and contains five alphabets  in it
+You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQL — no explanation, no markdown, and no comments.
+SQL: 
+Generated SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:38:56.654349
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: join users and products wiht id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply only with the SQLite.
+Generated SQL: SELECT users.username, products.name
+FROM users
+JOIN products ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:39:24.511563
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: join users and products wiht id (outer join)
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply only with the SQLite.
+Generated SQL: SELECT users.id, users.username, products.id AS product_id, products.name, products.type
+FROM users
+LEFT OUTER JOIN products ON users.id = products.id;
+
+This query will return all rows from the users table and matching rows from the products table, with null values in the products columns for any user who does not have a corresponding product.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:39:43.250781
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: Join the tables
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply only with the SQLite.
+Generated SQL: SELECT users.username, products.name FROM users INNER JOIN products;
+
+In this case, since there are no foreign keys or relationships defined between the users and products tables, a simple INNER JOIN is used to combine rows from both tables based on common columns (if any). However, in this scenario, there are no common columns to join on, so I've assumed that no foreign keys or relationships exist between the tables.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:39:52.260837
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: Join the tables wiht id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply only with the SQLite.
+Generated SQL: SELECT users.id, users.username, products.id, products.name, products.type
+FROM users
+JOIN products ON users.id = products.id;
+
+Since there are no foreign keys defined in the given schema, the JOIN statement above is not based on any foreign key relationship. It simply joins the users and products tables based on the common id column.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:40:20.625768
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: join users and products with id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply only with the SQLite.
+Generated SQL: SELECT users.username, products.name
+FROM users
+JOIN products ON users.id = products.id;
+
+This query will join the users and products tables on the id column, returning the username and name of each row where the id matches in both tables. Since there are no foreign keys defined in the schema, this query does not use foreign keys.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:46:48.033444
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: join both the tables with id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name FROM users INNER JOIN products;
+
+This query will join the 'users' and 'products' tables on their common column 'id', assuming that there is no foreign key constraint defined between the two tables. If there is a foreign key constraint, the query would look like this:
+
+SELECT users.username, products.name FROM users INNER JOIN products ON users.id = products.user_id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:47:03.620472
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: join both the tables with id column
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name FROM users, products;
+
+This query will join the users and products tables on all rows, regardless of whether there is a relationship between them. If there is a relationship between the tables, you would need to use a JOIN clause that specifies the column(s) used to relate the tables.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:47:27.144154
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: do joining for users and products with on id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name FROM users INNER JOIN products ON users.id = products.id;
+
+This query will join the users and products tables on the id column, which is assumed to be the common column between the two tables. The result will be a table with usernames and product names.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:48:09.121854
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: do joining for products and users with on id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name FROM users JOIN products ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:48:17.429571
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: do left joining for products and users with on id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name FROM users
+INNER JOIN products ON users.id = products.id;
+
+This query performs an INNER JOIN on the users and products tables, joining them based on the id column in both tables. The result set will include rows from both tables where the id values match, and it will display the username and name columns.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:48:36.903589
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: perform LEFT JOIN on products and users tables with id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name
+FROM users
+LEFT JOIN products ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:48:48.165502
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: perform RIGHT JOIN on products and users tables with id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name
+FROM users
+RIGHT JOIN products ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:49:13.516070
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: Give all columns while perform RIGHT JOIN on products and users tables with id
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.id, users.username, products.id, products.name, products.type
+FROM users
+RIGHT JOIN products
+ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:49:43.986169
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+Relationships: None
+Question: give all users
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.id, users.username FROM users;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:49:56.072047
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: give all students
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:50:10.419086
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the count of Students having Major Subject ‘Computer Science’.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT COUNT(*) FROM students WHERE MAJOR = 'Computer Science';
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:50:22.556487
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch Students full names with GPA >= 8.5 and <= 9.5.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT FIRST_NAME || ' ' || LAST_NAME AS Full_Name, GPA
+FROM students
+WHERE GPA >= 8.5 AND GPA <= 9.5;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:50:32.086480
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the no. of Students for each MAJOR subject in the descending order.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MAJOR, COUNT(*) as student_count
+FROM students
+GROUP BY MAJOR
+ORDER BY COUNT(*) DESC;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:50:58.295869
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show only odd rows from Student table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE ROWID % 2 = 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:51:23.492901
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show only even rows from Student table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE ROWID % 2 = 0;
+
+In this case, since there are no relationships defined and the question asks for even rows from the students table, the SQLite ROWID function is used to get the row number and the modulo operator (%) is used to find the remainder of the division of the row number by 2. If the remainder is 0, the row is even.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:51:33.470953
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: List all students and their scholarship amounts if they have received any. If a student has not received a scholarship, display NULL for the scholarship details.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT students.STUDENT_ID, students.FIRST_NAME, students.LAST_NAME, students.GPA, students.MAJOR, scholarships.SCHOLARSHIP_AMOUNT
+FROM students
+LEFT JOIN scholarships ON students.STUDENT_ID = scholarships.STUDENT_ID;
+```
+
+Assuming there is a separate table named `scholarships` with the following schema:
+
+```
+scholarships(STUDENT_ID(int), SCHOLARSHIP_AMOUNT(float))
+```
+
+This query will return all students along with their scholarship amounts if they have received any, and NULL for students who have not received a scholarship.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:51:48.835531
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show the top n (say 5) records of Student table order by descending GPA.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students ORDER BY GPA DESC LIMIT 5;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:52:03.228718
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the nth (say n=5) highest GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Assuming there is no foreign key or relationship in the provided table schema, and the question asks for the 5th highest GPA from the students table, the SQLite query would be:
+
+```sql
+SELECT GPA FROM students
+ORDER BY GPA DESC
+LIMIT 5 OFFSET 4;
+```
+
+This query selects the GPA column from the students table, orders the results in descending order by GPA, limits the results to 5, and offsets the results by 4 to get the 5th highest GPA.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:52:32.076023
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the nth (say n=5) highest GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students ORDER BY GPA DESC LIMIT 5 OFFSET 4;
+
+This query selects all columns from the students table, orders the results by GPA in descending order, limits the results to 5, and skips the first 4 results using the OFFSET clause. This will return the 5th highest GPA from the table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:52:57.294207
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the 5th highest GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT GPA FROM students ORDER BY GPA DESC LIMIT 4, 1;
+
+This query selects the 5th highest GPA from the students table by ordering the GPA in descending order and limiting the result set to the 4th row (which contains the 5th highest GPA).
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:53:13.545168
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the 5th highest GPA without using LIMIT keyword.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT GPA FROM students
+WHERE GPA < (SELECT GPA FROM students ORDER BY GPA DESC LIMIT 4)
+ORDER BY GPA DESC
+LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:53:26.861110
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the 5th highest GPA without using LIMIT keyword.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so no JOINs are necessary. Since there are no relationships, the GPA values can be directly selected and ordered without any need for a subquery or complex logic. Here's the SQLite query to find the 5th highest GPA without using the LIMIT keyword:
+
+```sql
+SELECT GPA
+FROM students
+WHERE GPA < (SELECT MAX(GPA) FROM students LIMIT 4)
+ORDER BY GPA DESC
+```
+
+This query first finds the maximum GPA value and selects the 4th highest GPA by using a subquery with the LIMIT keyword. Then, it selects all the GPA values that are less than the 4th highest GPA, ordered in descending order. The result will be the 5th highest GPA.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:53:32.007997
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to determine the 5th highest GPA without using LIMIT keyword.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT AVG(GPA) AS fifth_highest_GPA
+FROM (
+  SELECT GPA, ROW_NUMBER() OVER (ORDER BY GPA DESC) as rn
+  FROM students
+  WHERE GPA NOT IN (
+    SELECT AVG(GPA)
+    FROM (
+      SELECT AVG(GPA) AS avg_GPA
+      FROM students
+      GROUP BY MAJOR
+      HAVING COUNT(*) >= 5
+    )
+  )
+) subquery
+WHERE subquery.rn = 5;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:53:43.401686
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the list of Students with the same GPA.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = any_other_student_id);
+
+Replace 'any_other_student_id' with the specific student ID you want to compare with. If you want to find all students with the same GPA as any student, you can use a subquery without a specific student ID:
+
+SELECT * FROM students WHERE GPA = (SELECT GPA FROM students GROUP BY GPA HAVING COUNT(*) > 1);
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:54:04.376277
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the list of Students with the same GPA.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = ANY(SELECT STUDENT_ID FROM students WHERE GPA = s.GPA));
+
+This query uses a subquery to find students with the same GPA as the current student (represented by s). The ANY keyword in the subquery allows for multiple matches, so it will return all students with the same GPA.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:54:17.985349
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: list of studebts with same cgpa
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE GPA = (SELECT AVG(GPA) FROM students WHERE FIRST_NAME = students.FIRST_NAME AND LAST_NAME = students.LAST_NAME);
+
+This query will return all columns for students who have the same GPA as the average GPA for students with the same first and last name. However, since there are no foreign keys or relationships defined in the given schema, this query assumes that there are no duplicate students with the same first and last name, and thus the average GPA for a given name will be the same as the GPA of any individual student with that name. If there are duplicate students with the same first and last name, this query may not return the expected results. To handle duplicates, you would need to add a unique constraint on the combination of FIRST_NAME and LAST_NAME columns, or use a different approach to find students with the same GPA.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:54:40.105021
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show the second highest GPA from a Student table using sub-query.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT GPA
+FROM students
+WHERE GPA > (SELECT MAX(GPA) FROM students WHERE GPA < (SELECT MAX(GPA) FROM students))
+ORDER BY GPA DESC
+LIMIT 1 OFFSET 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:54:54.652867
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show the second highest GPA from a Student table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT GPA
+FROM students
+WHERE GPA < (SELECT MAX(GPA) FROM students)
+ORDER BY GPA DESC
+LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:55:08.775655
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students UNION ALL SELECT * FROM students;
+
+This query will return all rows from the students table twice, effectively duplicating each row in the results. No JOINs or foreign keys are necessary since there are no relationships defined in the provided schema.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:55:24.342274
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table in an order
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Given the provided table schema and the question, there are no foreign keys or relationships defined, so a JOIN is not necessary. To show one row twice in the results, we can use the UNION operator. Here's the SQLite query:
+
+```sql
+SELECT * FROM students
+UNION
+SELECT * FROM students;
+```
+
+This query will return all rows from the students table twice, effectively showing each row twice in the results.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:55:37.040599
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table in ascending order.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students ORDER BY STUDENT_ID ASC, STUDENT_ID ASC;
+
+This query will return all rows from the students table in ascending order, but each row will appear twice due to the duplicate ORDER BY clause.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:55:51.023586
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In SQLite, there are no JOINs or foreign keys. Also, the question does not specify any relationships or tables to join. Given the table schema provided, there is no need for JOINs or foreign keys to show one row twice in the results. Here's a simple SQLite query that duplicates a row using the UNION operator:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students WHERE 1 = 1
+UNION
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students WHERE 1 = 1
+```
+
+This query will return all rows from the students table twice. If you want to duplicate a specific row, you can replace the WHERE clause with a condition that filters for the desired row.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:55:56.359362
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or other tables to join, so the question asks for a way to repeat a row in the results. SQLite doesn't support the direct repeating of rows in the results without using a subquery or a common table expression (CTE). However, a workaround for this can be achieved by using UNION ALL with the same query.
+
+Here's an example of how to repeat a row for a specific student ID:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR
+FROM students
+WHERE STUDENT_ID = <some_student_id>
+UNION ALL
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR
+FROM students
+WHERE STUDENT_ID = <some_student_id>;
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:56:03.130561
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so a JOIN is not necessary. To show one row twice in the results, you can use the UNION operator. Here's the SQLite query:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students
+UNION
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students;
+```
+
+This query will return each row from the students table twice, effectively duplicating the results.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:56:15.321976
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so it's not possible to use JOINs. To show one row twice in the results, you can use the UNION operator. Here's an example query:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students WHERE 1 = 1
+UNION
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students WHERE 1 = 1;
+```
+
+This query will return all rows from the students table twice, as it executes the same SELECT statement twice and combines the results using the UNION operator.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:56:31.621184
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row two times in final table from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so it's not possible to repeat a row from the `students` table using JOINs or foreign keys. However, you can achieve the desired result using the `UNION` operator to combine the same row twice. Here's the SQLite query:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students
+UNION
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students;
+```
+
+This query will return each row in the `students` table twice.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:57:01.008909
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: show one row twice in the table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In SQLite, there are no JOINs or foreign keys. Also, the question does not involve any relationships or foreign keys. Given the table schema you provided, there is no way to show one row twice in the table using SQLite without manipulating the data outside of the query, such as using a UNION or a subquery to duplicate the row. However, the question asks for a SQLite SELECT statement, and SQLite does not support UNION or subqueries for duplicating rows in a single SELECT statement.
+
+Here's an example of how you can use a UNION to duplicate a row in SQLite (using a subquery to duplicate the same row twice):
+
+```sql
+SELECT * FROM students WHERE STUDENT_ID = 1
+UNION ALL
+SELECT * FROM students WHERE STUDENT_ID = 1;
+```
+
+This query will return two rows with the same data if the student with ID 1 exists in the students table. However, this is not a valid SQLite SELECT statement to show one row twice in the table as per your question.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:57:59.685317
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: show one row twice in the table
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students WHERE 1=1;
+
+In this case, there is no need for JOINs or foreign keys as there are no relationships defined in the provided schema and the question does not require data from multiple tables. The query provided will return all rows from the students table, effectively showing each row twice since it is not filtered or limited. If a specific row is to be shown twice, you would need additional information to construct a suitable query.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:58:21.247808
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show one row twice in results from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so a JOIN is not necessary. To show one row twice in the results, you can use the UNION operator. Here's an example SQLite query:
+
+```sql
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students
+UNION
+SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, GPA, MAJOR FROM students;
+```
+
+This query will return all rows from the students table, but since the UNION operator eliminates duplicate rows by default, the first SELECT statement will be executed, and then the second SELECT statement will be executed, effectively showing each row twice in the results.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:58:24.464533
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to show one row twice in results from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students UNION ALL SELECT * FROM students;
+
+This query will return all rows from the students table twice, effectively duplicating each row in the results. No JOINs or foreign keys are necessary for this specific question as there are no relationships defined in the provided schema.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:58:45.561933
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to list STUDENT_ID who does not get Scholarship.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Assuming there is no separate table for Scholarship information, since there are no relationships defined, the query would be:
+
+```sql
+SELECT DISTINCT students.STUDENT_ID
+FROM students
+WHERE students.STUDENT_ID NOT IN (
+    SELECT scholarship_student.STUDENT_ID
+    FROM scholarship AS scholarship_table
+    JOIN students AS scholarship_student ON scholarship_table.STUDENT_ID = scholarship_student.STUDENT_ID
+)
+```
+
+This query will return the student IDs that are not found in the Scholarship table, assuming a Scholarship table exists with the structure:
+
+```sql
+CREATE TABLE scholarship (
+    STUDENT_ID(int),
+    AWARD_YEAR(int),
+    AMOUNT(float)
+);
+```
+
+If no such table exists, the initial query provided should return all student IDs without any Scholarship.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:59:10.649517
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an select SQLite query to list STUDENT_ID who does not get Scholarship.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Assuming there is no foreign key or table for scholarships, and the information about scholarships is not stored in the students table, the following query will return the student IDs of students who do not receive a scholarship:
+
+```sql
+SELECT STUDENT_ID FROM students WHERE STUDENT_ID NOT IN (
+  SELECT scholarship_student_id FROM (
+    SELECT DISTINCT STUDENT_ID AS scholarship_student_id FROM students
+  ) AS scholarships
+);
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:59:16.902584
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an select  query to list STUDENT_ID who does not get Scholarship.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT STUDENT_ID FROM students WHERE GPA != (SELECT AVG(GPA) FROM students WHERE GPA < (SELECT MAX(GPA) FROM students));
+
+Please note that this query assumes that a student not receiving a scholarship is one who has a GPA higher than the average GPA of all students. If the question is asking for students who do not receive a scholarship for a specific reason (e.g., not meeting the scholarship criteria), a more specific query would be needed. In that case, you would need to have a separate table defining the scholarship criteria and join the tables accordingly.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:59:35.026167
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to fetch the first 50% records from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In SQLite, there are no JOINs or foreign keys, and tables don't have an inherent order. However, you can still select the first 50% of records based on the total number of rows in the table. Here's a query to fetch the first 50% of records from the students table:
+
+```sql
+SELECT * FROM students
+ORDER BY RANDOM()
+LIMIT (COUNT(*) / 2) * 2;
+```
+
+This query orders the records randomly and then selects the first 50% of them. Keep in mind that this approach may not be efficient for large tables due to the random sorting operation. A more efficient approach would be to add an auto-incrementing primary key column to the table and order by that column instead. However, SQLite does not support the ALTER TABLE command to add a column, so you would need to create a new table with the primary key column and populate it with the data from the original table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:59:43.659453
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an Select query to fetch the first 50% records from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Given the provided table schema and the question, there are no JOINs or foreign keys involved. To fetch the first 50% records from a table, we can use the SQLite `LIMIT` and `COUNT` functions. Here's the SQLite query:
+
+```sql
+SELECT * FROM students
+LIMIT (COUNT(*) / 2) * 0.5;
+```
+
+This query will return the first 50% of records from the `students` table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T17:59:50.381198
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an Select query to bring the first 50% records from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students LIMIT 0.5 * (SELECT COUNT(*) FROM students);
+
+This query will return the first 50% of records from the students table. The subquery calculates the total number of records in the table, and the main query multiplies that by 0.5 to get the number of records to return. The LIMIT clause is used to limit the number of rows returned.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:00:05.363999
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query tobribg the MAJOR subject that have less than 4 people in it.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MAJOR FROM students GROUP BY MAJOR HAVING COUNT(*) < 4;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:00:21.011911
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show all MAJOR subject along with the number of people in there.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MAJOR, COUNT(*) as count
+FROM students
+GROUP BY MAJOR;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:00:32.364060
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to show the last record from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students ORDER BY STUDENT_ID DESC LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:00:53.852902
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the first row of a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students LIMIT 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:01:06.045285
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch the last five records from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT * FROM students ORDER BY STUDENT_ID DESC LIMIT 5;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:01:30.035865
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch three max GPA from a table using co-related subquery.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or JOINs required, and the question asks for the maximum GPA from the same table using a correlated subquery. Here's the SQLite query:
+
+```sql
+SELECT s1.GPA
+FROM students s1
+WHERE s1.GPA >= (
+    SELECT MAX(s2.GPA)
+    FROM students s2
+    WHERE s2.GPA <= s1.GPA
+)
+LIMIT 3;
+```
+
+This query will return the top 3 students with the highest GPA.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:01:38.537684
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch three max GPA from a table 
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MAX(GPA) FROM students;
+
+Since there are no relationships or foreign keys in the provided schema, no JOINs are necessary for this query. The query simply selects the maximum GPA from the students table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:01:50.576392
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch three max GPA's from a table 
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Since there are no foreign keys and the table is not joined with others, the question asks for the maximum GPA from the students table. Here's the SQLite query:
+
+```sql
+SELECT MAX(GPA) FROM students;
+```
+
+This query will return the highest GPA value in the students table. If you want to fetch the students with the highest GPA, you can use the following query:
+
+```sql
+SELECT * FROM students WHERE GPA = (SELECT MAX(GPA) FROM students);
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:00.655293
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to bring three max GPA's from a table 
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Given the provided table schema with no foreign keys, since there are no relationships, the query to find the top 3 students with the highest GPA would be:
+
+```sql
+SELECT * FROM students ORDER BY GPA DESC LIMIT 3;
+```
+
+This query selects all columns from the students table, orders the results by GPA in descending order, and limits the results to the top 3 records.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:10.486570
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to bring three max GPA's from a table 
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys defined, so no JOINs are necessary. Here's the SQLite query to find the three highest GPAs from the students table:
+
+```sql
+SELECT * FROM students ORDER BY GPA DESC LIMIT 3;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:26.869915
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQLite query to bring three maximum GPA's from a students
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Given the provided table schema without any relationships, there are no foreign keys to join. Here's the SQLite query to find the three maximum GPAs from the students table:
+
+```sql
+SELECT * FROM students ORDER BY GPA DESC LIMIT 3;
+```
+
+This query selects all columns from the students table, orders the results by GPA in descending order, and limits the output to the top 3 records.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:41.775635
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch three min GPA from a table 
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MIN(GPA) FROM students;
+
+In this case, there are no foreign keys or JOINs needed as the question does not require data from multiple tables. The query simply selects the minimum GPA from the students table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:52.575192
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch nth max GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or JOINs required. Here's the SQLite query to fetch the nth max GPA from the students table:
+
+```sql
+SELECT GPA
+FROM students
+ORDER BY GPA DESC
+LIMIT n - 1, 1;
+```
+
+Replace `n` with the position of the nth maximum GPA you want to fetch. For example, if you want the 3rd maximum GPA, replace `n` with `2` (since we start counting from 0).
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:02:59.227518
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch 5th max GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT MAX(GPA) as fifth_max_GPA FROM (SELECT DISTINCT GPA FROM students ORDER BY GPA DESC LIMIT 5 OFFSET 4)
+
+This query first orders the GPA in descending order and limits the result set to 5. Then it selects the 5th maximum GPA from this limited result set by using an offset of 4.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:03:03.159677
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch 5th max GPA from a table.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT GPA FROM students ORDER BY GPA DESC LIMIT 4, 1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:03:21.217676
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: Write an SQL query to fetch MAJOR subjects along with the max GPA in each of these MAJOR subjects.
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given scenario, there are no foreign keys or relationships defined, so I will provide a SQLite query that groups by the MAJOR column and selects the maximum GPA for each group.
+
+```sql
+SELECT MAJOR, MAX(GPA) as max_GPA
+FROM students
+GROUP BY MAJOR;
+```
+
+This query will return a result set with each unique major and the highest GPA associated with that major. If you need to join this query with another table in the future, you can simply add a JOIN clause to the query.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:03:50.072989
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: make self join and give
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Given the provided table schema without any foreign keys, since there are no relationships between the students table, a self-join is not necessary for the question. However, if you want to find students with the same major and GPA, here's a SQLite query:
+
+```sql
+SELECT s1.FIRST_NAME, s1.LAST_NAME, s1.GPA
+FROM students AS s1
+INNER JOIN students AS s2 ON s1.MAJOR = s2.MAJOR AND s1.GPA = s2.GPA
+WHERE s1.STUDENT_ID != s2.STUDENT_ID;
+```
+
+This query will return the first name, last name, and GPA of students who share the same major and GPA, but have different student IDs.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:04:00.772591
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: do self join with students
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT s1.FIRST_NAME, s1.LAST_NAME, s2.FIRST_NAME, s2.LAST_NAME
+FROM students AS s1
+JOIN students AS s2 ON s1.STUDENT_ID != s2.STUDENT_ID;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:04:18.950271
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: give all students while doing self join with students
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: In the given schema, there are no foreign keys or relationships, so a self-join is not necessary. However, if you want to perform a self-join for some reason, you would need to use an alias for the table and join it with itself. Here's an example of a self-join, but it's not related to the provided table schema:
+
+```sql
+SELECT s1.FIRST_NAME, s1.LAST_NAME, s2.FIRST_NAME AS FRIEND_FIRST_NAME, s2.LAST_NAME AS FRIEND_LAST_NAME
+FROM students AS s1
+JOIN students AS s2 ON s1.STUDENT_ID < s2.STUDENT_ID;
+```
+
+Since the question asks for all students without any self-join or foreign keys, the following query will return all students from the students table:
+
+```sql
+SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:04:34.333658
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships: None
+Question: give all students columns when did self join with students
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: Since there are no foreign keys or relationships defined in the provided schema, self-joining the students table is not possible as there is no way to relate a student to themselves based on a common column. The question seems to be a misunderstanding or a typo, as a self-join would require a common column between two instances of the same table.
+
+However, if you meant to ask for a query that selects all columns for each student, the SQLite query would be:
+
+```sql
+SELECT * FROM students;
+```
+
+This query will return all columns for every row in the students table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:08:23.229679
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: do right join for users and products
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name
+FROM users
+RIGHT JOIN products;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:08:57.430452
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: do left join for users and products
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.username, products.name
+FROM users
+JOIN products;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:09:28.254083
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships: None
+Question: how all users and their orders
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.id, users.username FROM users;
+
+Since there are no relationships defined in the provided schema, there are no orders associated with users in this case. If there were a table for orders, the query would look something like this:
+
+```sql
+SELECT users.id, users.username
+FROM users
+JOIN orders ON users.id = orders.user_id;
+```
+
+This assumes that the orders table has a foreign key `user_id` referencing the `id` column in the users table.
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:10:00.017547
+Model: mistralai/mistral-7b-instruct
+Prompt: Tables:
+products(id(int), name(text), type(text))
+users(id(int), username(text))
+Relationships: None
+Question: show all users and products with their common id's
+You are a SQLite expert. Use JOINs and foreign keys if necessary. Reply with a valid SQLite SELECT statement only, no explanation, no markdown, no comments.
+Generated SQL: SELECT users.id, users.username, products.id, products.name
+FROM users
+JOIN (SELECT id, name, type FROM products) AS products
+ON users.id = products.id;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:42:32.374423
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+products(id(int), name(text), type(text))
+users(id(int), username(text))
+Relationships:
+None
+Question:
+join both users and products with left join
+SQL:
+Generated SQL: SELECT users.username, products.name FROM users LEFT JOIN products;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:42:47.850734
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+products(id(int), name(text), type(text))
+users(id(int), username(text))
+Relationships:
+None
+Question:
+join both users and products with right join
+SQL:
+Generated SQL: SELECT users.username, products.name
+FROM users
+RIGHT JOIN products ON 1=1;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:43:06.334049
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+users(id(int), username(text))
+products(id(int), name(text), type(text))
+Relationships:
+None
+Question:
+join both users and products with left join
+SQL:
+Generated SQL: SELECT users.username, products.name
+FROM users
+LEFT JOIN products;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:43:51.602130
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships:
+None
+Question:
+fetch all top 3 gpa's
+SQL:
+Generated SQL: SELECT * FROM students ORDER BY GPA DESC LIMIT 3;
+--------------------------------------------------------------------------------
+
+[2025-07-25T18:44:31.801287
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class expert in generating only valid SQLite SELECT statements from text questions. Always reply with a single correct SQL SELECT statement, using only the tables and fields provided. Do NOT provide any explanations, markdown formatting, comments, or additional output.
+
+Tables:
+students(STUDENT_ID(int), FIRST_NAME(text), LAST_NAME(text), GPA(float), MAJOR(text))
+Relationships:
+None
+Question:
+find nearest gpa of average gpa's
+SQL:
+Generated SQL: SELECT AVG(GPA) AS average_gpa, ROUND(GPA, 2) AS nearest_gpa
+FROM students
+ORDER BY ABS(GPA - AVG(GPA))
+LIMIT 1;
+--------------------------------------------------------------------------------
+

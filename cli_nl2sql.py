@@ -107,14 +107,19 @@ def run_query():
     print(GREEN + "Available tables and fields:")
     for t in tables:
         schema = get_table_schema(t)
-        cols = ", ".join(f"{CYAN}{k}{RESET}({MAGENTA}{v}{RESET})" for k,v in schema['columns'].items())
+        cols = ", ".join(f"{CYAN}{k}{RESET}({MAGENTA}{v}{RESET})" for k, v in schema['columns'].items())
         print(f"  {MAGENTA}{t}{RESET}: {cols}")
-    print(YELLOW + "Enter natural language question (e.g. 'Show all students'):")
+    print(YELLOW + "Enter natural language question (e.g. 'Show all users and their orders'):")
     question = input_colored(">>>")
-    print(YELLOW + "Which table to query?")
-    table_name = input_colored(">>>")
+    print(YELLOW + "Enter comma-separated tables to use, or leave blank to use ALL tables:")
+    tbl_input = input_colored(">>>")
+    # Support multi-table
+    if tbl_input.strip():
+        multi_tables = [t.strip() for t in tbl_input.split(",") if t.strip()]
+    else:
+        multi_tables = tables # use all tables if blank
     payload = {
-        "table_name": table_name,
+        "table_names": multi_tables,
         "question": question
     }
     resp = requests.post(f"{BASE_URL}/query", headers=HEADERS, json=payload)

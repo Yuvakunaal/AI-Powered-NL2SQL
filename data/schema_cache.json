@@ -1,12 +1,4 @@
 {
-  "students": {
-    "columns": {
-      "id": "int",
-      "roll": "int",
-      "name": "text"
-    },
-    "created_at": "2025-07-24T05:47:00.051153"
-  },
   "teachers": {
     "columns": {
       "id": "int",
@@ -21,7 +13,7 @@
       "name": "text",
       "rank": "int"
     },
-    "created_at": "2025-07-24T07:44:43.648618"
+    "created_at": "2025-07-24T09:40:41.642689"
   },
   "products": {
     "columns": {
@@ -29,6 +21,31 @@
       "name": "text",
       "type": "text"
     },
-    "created_at": "2025-07-24T06:53:46.763408"
+    "created_at": "2025-07-24T09:36:21.562740"
+  },
+  "people": {
+    "columns": {
+      "id": "int",
+      "name": "text",
+      "dob": "datetime"
+    },
+    "created_at": "2025-07-24T10:11:16.083324"
+  },
+  "students": {
+    "columns": {
+      "STUDENT_ID": "int",
+      "FIRST_NAME": "text",
+      "LAST_NAME": "text",
+      "GPA": "float",
+      "MAJOR": "text"
+    },
+    "created_at": "2025-07-24T10:57:11.920445"
+  },
+  "users": {
+    "columns": {
+      "id": "int",
+      "username": "text"
+    },
+    "created_at": "2025-07-24T15:39:09.185543"
   }
 }

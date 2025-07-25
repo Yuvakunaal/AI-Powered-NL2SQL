@@ -49,7 +49,7 @@ class OpenRouterClient:
         payload = {
             "model": model,
             "messages": [
-                {"role": "system", "content": "You are a SQL expert. Generate SQL queries based on the given schema and question. Only respond with the SQL query, no explanations or markdown formatting."},
+                {"role": "system", "content": "You are a SQLite expert. Given any table schema and a natural language question, respond with the most accurate and efficient SQLite query. Always output SQLite-compliant SQLite — no explanation, no markdown, and no comments."},
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.2,  # Lower temperature for more deterministic SQL

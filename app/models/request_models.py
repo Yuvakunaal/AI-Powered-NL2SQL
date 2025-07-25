@@ -41,9 +41,26 @@ class InsertDataRequest(BaseModel):
     data: str = Field(..., description="CSV formatted data to insert")
 
 class QueryRequest(BaseModel):
-    """Request model for querying a table with natural language."""
-    table_name: str = Field(..., description="Name of the table to query")
-    question: str = Field(..., description="Natural language question to convert to SQL")
+        """Request model for querying one or more tables with natural language."""
+        table_names: Optional[List[str]] = Field(None, description="Names of the tables to query")
+        table_name: Optional[str] = Field(None, description="Single table (legacy, for backward compatibility)")
+        question: str = Field(..., description="Natural language question to convert to SQL")
+
+        # For backward compatibility:
+        @validator('table_names', pre=True, always=True)
+        def ensure_table_names(cls, v, values):
+            # Automatic upgrade: if table_name provided, make table_names = [table_name]
+            if v is None and 'table_name' in values and values['table_name']:
+                return [values['table_name']]
+            return v
+
+        class Config:
+            schema_extra = {
+                "example": {
+                    "table_names": ["students", "colleges"],
+                    "question": "Show each student and their college name"
+                }
+            }
     
 class QueryResponse(BaseModel):
     """Response model for query results."""

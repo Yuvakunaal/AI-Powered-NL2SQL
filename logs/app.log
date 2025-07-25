@@ -440,3 +440,3174 @@ This query groups the students by name, calculates the total roll for each group
 2025-07-24 13:14:32,373 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
 2025-07-24 13:14:43,649 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
 2025-07-24 13:23:16,337 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:04:26,770 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:04:26,842 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:04:52,659 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 15:04:52,661 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: datatype mismatch
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 92, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) datatype mismatch
+[SQL: INSERT INTO products (id, name, type) VALUES (?, ?, ?)]
+[parameters: ('exit', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-24 15:06:21,563 - app.db.dynamic_models - INFO - Created table: products with columns: {'id': 'int', 'name': 'text', 'type': 'text'}
+2025-07-24 15:10:41,643 - app.db.dynamic_models - INFO - Created table: colleges with columns: {'id': 'int', 'name': 'text', 'rank': 'int'}
+2025-07-24 15:13:16,412 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:15:28,697 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:15:28,769 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:18:40,631 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'text', 'name': 'text', 'dob': 'text'}
+2025-07-24 15:18:49,990 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'text', 'name': 'text', 'dob': 'text'}
+2025-07-24 15:18:49,994 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:21:18,126 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:21:18,128 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 92, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'dob': '2005-03-31', 'id': '1', 'name': 'kunaal'}]]
+2025-07-24 15:21:47,462 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:21:47,463 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 92, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'dob': '2005-03-31 00:00:00', 'id': '1', 'name': 'kunaal'}]]
+2025-07-24 15:21:56,161 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:21:56,163 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 92, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'dob': '2005-03-31T00:00:00', 'id': '1', 'name': 'kunaal'}]]
+2025-07-24 15:24:57,242 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:24:57,996 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:24:58,064 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:25:34,754 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:25:35,371 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:25:35,435 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:25:43,009 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:25:45,013 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:25:45,076 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:26:17,802 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:26:17,802 - app.routers.insert_data - ERROR - Error inserting row {'id': '1', 'name': 'kunaal', 'dob': '2005-03-31'}: string indices must be integers, not 'str'
+2025-07-24 15:26:43,806 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:26:43,806 - app.routers.insert_data - ERROR - Error inserting row {'id': '2', 'name': 'Saiyuva', 'dob': '2005-02-24'}: string indices must be integers, not 'str'
+2025-07-24 15:27:01,029 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE DATEDIFF(CURDATE(), dob) < YEAR(CURDATE());]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:27:01,029 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such function: CURDATE
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE DATEDIFF(CURDATE(), dob) < YEAR(CURDATE());]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE DATEDIFF(CURDATE(), dob) < YEAR(CURDATE());]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:27:18,251 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT MIN(dob) FROM people;
+SELECT name FROM people WHERE dob = (SELECT MIN(dob) FROM people);]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-24 15:27:18,252 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT MIN(dob) FROM people;
+SELECT name FROM people WHERE dob = (SELECT MIN(dob) FROM people);]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT MIN(dob) FROM people;
+SELECT name FROM people WHERE dob = (SELECT MIN(dob) FROM people);]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-24 15:29:28,446 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:29:28,446 - app.routers.insert_data - ERROR - Error inserting row {'id': '1', 'name': 'kunaal', 'dob': '2005-02-24T00:00:00'}: string indices must be integers, not 'str'
+2025-07-24 15:31:03,060 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:31:03,696 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:31:07,591 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:31:07,640 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:31:24,357 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:31:24,359 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 108, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'id': '1', 'dob': '2005-03-31', 'name': 'kunaal'}]]
+2025-07-24 15:31:36,999 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:31:37,000 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 108, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'id': '1', 'dob': '2005-03-31T00:00:00', 'name': 'kunaal'}]]
+2025-07-24 15:32:21,611 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:32:22,304 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:32:23,301 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:32:29,743 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:32:29,794 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:32:34,237 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:32:34,766 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:32:34,813 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:33:00,158 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:33:00,790 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:33:00,854 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:33:14,647 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:33:14,647 - app.routers.insert_data - INFO - Inserting row: {'id': '1', 'name': 'kunaal', 'dob': '2005-03-31'}
+2025-07-24 15:33:14,649 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 116, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'dob': '2005-03-31', 'id': '1', 'name': 'kunaal'}]]
+2025-07-24 15:34:33,517 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:34:34,203 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:34:40,542 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:34:40,604 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:34:58,650 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:34:58,650 - app.routers.insert_data - INFO - Final clean row: {'id': '1', 'name': 'kunaal', 'dob': '2005-03-31'}
+2025-07-24 15:34:58,652 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 118, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'id': '1', 'name': 'kunaal', 'dob': '2005-03-31'}]]
+2025-07-24 15:36:10,707 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:36:10,708 - app.routers.insert_data - ERROR - Error inserting row {'id': '1', 'name': 'kunaal', 'dob': 'date(2005', None: ['3', '31)']}: expected string or bytes-like object, got 'NoneType'
+2025-07-24 15:37:49,185 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:37:49,966 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:37:54,605 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:37:54,654 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:38:29,626 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:38:29,627 - app.routers.insert_data - ERROR - Error inserting row {'id': '1', 'name': 'kunaal', 'dob': 'date(2005', None: ['3', '31)']}: Invalid isoformat string: 'date(2005'
+2025-07-24 15:39:45,286 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:39:46,004 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:39:50,637 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:39:50,686 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:40:26,626 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:40:26,626 - app.routers.insert_data - WARNING - Could not parse DOB '2005-3-31': Invalid isoformat string: '2005-3-31'
+2025-07-24 15:40:26,629 - app.routers.insert_data - ERROR - Error inserting data
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/insert_data.py", line 104, in insert_data
+    db.commit()
+    ~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str(statement), parameters, None, None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1811, in _execute_context
+    context = constructor(
+        dialect, self, conn, execution_options, *args, **kw
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 1485, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1187, in process
+    raise TypeError(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO people (id, name, dob) VALUES (?, ?, ?)]
+[parameters: [{'dob': '2005-3-31', 'id': '1', 'name': 'kunaak'}]]
+2025-07-24 15:40:29,705 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:41:16,083 - app.db.dynamic_models - INFO - Created table: people with columns: {'id': 'int', 'name': 'text', 'dob': 'datetime'}
+2025-07-24 15:41:30,143 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE dob > CURDATE();]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:41:30,143 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such function: CURDATE
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE dob > CURDATE();]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such function: CURDATE
+[SQL: SELECT name FROM people WHERE dob > CURDATE();]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:42:14,512 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:42:15,142 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:42:15,214 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:42:18,646 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:42:19,100 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:42:19,148 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:42:47,510 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:42:48,222 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:42:48,296 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:44:13,117 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) near "'18 years'": syntax error
+[SQL: SELECT name FROM people WHERE dob >= DATE('now') - INTERVAL '18 years';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:44:13,117 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "'18 years'": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "'18 years'": syntax error
+[SQL: SELECT name FROM people WHERE dob >= DATE('now') - INTERVAL '18 years';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) near "'18 years'": syntax error
+[SQL: SELECT name FROM people WHERE dob >= DATE('now') - INTERVAL '18 years';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-24 15:45:10,447 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:45:11,079 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:17,174 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:17,240 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:45:17,847 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:45:18,299 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:21,917 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:26,792 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:29,678 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:32,078 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:32,138 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:45:34,564 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:45:35,002 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:35,050 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:45:39,698 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:45:40,134 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:45:40,182 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:46:14,016 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:46:14,719 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:46:14,784 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:47:30,820 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT * FROM people;
+
+This query will return all records from the 'people' table. If you want to filter the results based on the age (18 years old or older), you can use the following query:
+
+SELECT * FROM people WHERE DATE('now') - dob >= DATE('now', '-18 years');]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-24 15:47:30,820 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT * FROM people;
+
+This query will return all records from the 'people' table. If you want to filter the results based on the age (18 years old or older), you can use the following query:
+
+SELECT * FROM people WHERE DATE('now') - dob >= DATE('now', '-18 years');]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT * FROM people;
+
+This query will return all records from the 'people' table. If you want to filter the results based on the age (18 years old or older), you can use the following query:
+
+SELECT * FROM people WHERE DATE('now') - dob >= DATE('now', '-18 years');]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-24 15:48:01,879 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:48:02,613 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:48:02,680 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:48:03,691 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:48:04,143 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:48:04,192 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:48:17,832 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:48:18,419 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:48:18,483 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:48:30,788 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 15:48:31,568 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 15:48:31,633 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 15:54:23,024 - app.db.dynamic_models - INFO - Created table: students with columns: {'id': 'int', 'roll': 'int', 'name': 'text'}
+2025-07-24 15:54:23,032 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:54:56,839 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:55:18,452 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:55:48,483 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:56:10,257 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:56:35,400 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:57:04,125 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:57:25,080 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 15:57:50,425 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:05:53,666 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 16:05:54,550 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 16:05:54,622 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 16:05:57,859 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 16:05:58,316 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 16:05:58,369 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 16:20:52,962 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 16:20:53,788 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 16:20:59,605 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 16:20:59,671 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 16:21:39,539 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:22:26,753 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:22:26,764 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:22:31,290 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:23:40,923 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:23:59,213 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:24:17,928 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:26:08,633 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:26:30,006 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:26:48,040 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 16:27:11,920 - app.db.dynamic_models - INFO - Created table: students with columns: {'STUDENT_ID': 'int', 'FIRST_NAME': 'text', 'LAST_NAME': 'text', 'GPA': 'float', 'MAJOR': 'text'}
+2025-07-24 18:15:50,120 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-24 21:07:32,007 - app.db.dynamic_models - INFO - Database initialized
+2025-07-24 21:07:32,082 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-24 21:08:27,792 - app.db.dynamic_models - INFO - Created table: users with columns: {'id': 'int', 'username': 'text'}
+2025-07-24 21:08:56,382 - app.db.dynamic_models - INFO - Created table: users with columns: {'id': 'int', 'username': 'text'}
+2025-07-24 21:09:02,278 - app.db.dynamic_models - INFO - Created table: users with columns: {'id': 'int', 'username': 'text'}
+2025-07-24 21:09:09,185 - app.db.dynamic_models - INFO - Created table: users with columns: {'id': 'int', 'username': 'text'}
+2025-07-24 21:11:57,790 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:43:32,377 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:43:32,895 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:46:35,639 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such function: LEN
+[SQL: SELECT LEN(DISTINCT MAJOR) AS length, MAJOR FROM students;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:46:35,639 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such function: LEN
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such function: LEN
+[SQL: SELECT LEN(DISTINCT MAJOR) AS length, MAJOR FROM students;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such function: LEN
+[SQL: SELECT LEN(DISTINCT MAJOR) AS length, MAJOR FROM students;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:48:35,961 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:48:35,962 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such function: RIGHT
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:48:50,077 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:48:50,077 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such function: RIGHT
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 17, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 23, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such function: RIGHT
+[SQL: SELECT * FROM students WHERE LENGTH(FIRST_NAME) = 5 AND RIGHT(FIRST_NAME, 1) = 'a';]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 22:50:04,374 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:50:05,164 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:50:10,631 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:50:10,710 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:50:37,178 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:50:38,005 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:50:38,090 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:50:56,377 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:50:57,008 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:50:57,070 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:52:11,007 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:52:11,756 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:24,401 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:45,474 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:48,144 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:50,915 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:52,127 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:52:52,192 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:53:26,545 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:53:27,265 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:53:27,339 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:53:28,857 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:53:29,438 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:53:29,493 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:53:38,785 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:53:39,556 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:53:39,619 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:54:33,087 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:54:33,762 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:54:33,825 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:54:38,070 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:54:38,525 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:54:38,575 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:54:58,166 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 22:54:59,746 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 22:54:59,808 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 22:56:29,313 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 44, in query_table
+    table_names = request.table_names or ([request.table_name] if request.table_name else [])
+                  ^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'QueryRequest' object has no attribute 'table_names'
+2025-07-25 23:01:12,153 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:01:13,057 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:01:13,130 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:01:36,187 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:01:36,925 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:01:36,999 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:04:27,168 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:04:28,179 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:04:28,265 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:04:30,898 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:04:31,801 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:04:31,863 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:04:47,332 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:04:48,022 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:04:48,089 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:04:53,949 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:04:54,677 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:04:54,740 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:05:47,840 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:05:49,083 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:05:49,191 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:05:51,617 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:05:52,078 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:05:52,127 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:05:57,076 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:05:57,882 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:05:57,951 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:06:21,184 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:06:22,485 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:06:22,558 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:07:10,722 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 44, in query_table
+    table_names = request.table_names or ([request.table_name] if request.table_name else [])
+                  ^^^^^^^^^^^^^^^^^^^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'QueryRequest' object has no attribute 'table_names'
+2025-07-25 23:08:29,055 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:08:30,632 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:08:32,003 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:08:32,074 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:09:24,516 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id AS product_id, products.name, products.type
+FROM users
+LEFT OUTER JOIN products ON users.id = products.id;
+
+This query will return all rows from the users table and matching rows from the products table, with null values in the products columns for any user who does not have a corresponding product.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:09:24,516 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 19, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id AS product_id, products.name, products.type
+FROM users
+LEFT OUTER JOIN products ON users.id = products.id;
+
+This query will return all rows from the users table and matching rows from the products table, with null values in the products columns for any user who does not have a corresponding product.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 78, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 25, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id AS product_id, products.name, products.type
+FROM users
+LEFT OUTER JOIN products ON users.id = products.id;
+
+This query will return all rows from the users table and matching rows from the products table, with null values in the products columns for any user who does not have a corresponding product.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:09:43,252 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name FROM users INNER JOIN products;
+
+In this case, since there are no foreign keys or relationships defined between the users and products tables, a simple INNER JOIN is used to combine rows from both tables based on common columns (if any). However, in this scenario, there are no common columns to join on, so I've assumed that no foreign keys or relationships exist between the tables.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:09:43,252 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 19, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name FROM users INNER JOIN products;
+
+In this case, since there are no foreign keys or relationships defined between the users and products tables, a simple INNER JOIN is used to combine rows from both tables based on common columns (if any). However, in this scenario, there are no common columns to join on, so I've assumed that no foreign keys or relationships exist between the tables.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 78, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 25, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name FROM users INNER JOIN products;
+
+In this case, since there are no foreign keys or relationships defined between the users and products tables, a simple INNER JOIN is used to combine rows from both tables based on common columns (if any). However, in this scenario, there are no common columns to join on, so I've assumed that no foreign keys or relationships exist between the tables.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:09:52,261 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id, products.name, products.type
+FROM users
+JOIN products ON users.id = products.id;
+
+Since there are no foreign keys defined in the given schema, the JOIN statement above is not based on any foreign key relationship. It simply joins the users and products tables based on the common id column.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:09:52,261 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 19, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id, products.name, products.type
+FROM users
+JOIN products ON users.id = products.id;
+
+Since there are no foreign keys defined in the given schema, the JOIN statement above is not based on any foreign key relationship. It simply joins the users and products tables based on the common id column.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 78, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 25, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.id, users.username, products.id, products.name, products.type
+FROM users
+JOIN products ON users.id = products.id;
+
+Since there are no foreign keys defined in the given schema, the JOIN statement above is not based on any foreign key relationship. It simply joins the users and products tables based on the common id column.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:10:20,626 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name
+FROM users
+JOIN products ON users.id = products.id;
+
+This query will join the users and products tables on the id column, returning the username and name of each row where the id matches in both tables. Since there are no foreign keys defined in the schema, this query does not use foreign keys.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:10:20,626 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: You can only execute one statement at a time.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 19, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name
+FROM users
+JOIN products ON users.id = products.id;
+
+This query will join the users and products tables on the id column, returning the username and name of each row where the id matches in both tables. Since there are no foreign keys defined in the schema, this query does not use foreign keys.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 78, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 25, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.ProgrammingError) You can only execute one statement at a time.
+[SQL: SELECT users.username, products.name
+FROM users
+JOIN products ON users.id = products.id;
+
+This query will join the users and products tables on the id column, returning the username and name of each row where the id matches in both tables. Since there are no foreign keys defined in the schema, this query does not use foreign keys.]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-25 23:15:24,737 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:15:25,613 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:31,814 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:32,853 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:34,007 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:36,108 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:37,258 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:37,330 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:15:50,971 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:15:51,554 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:51,615 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:15:55,051 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:15:55,498 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:55,549 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:15:57,977 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:15:58,468 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:15:58,520 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:15:59,734 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:16:00,227 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:16:00,308 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:16:01,115 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:16:01,600 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:16:01,649 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:16:02,458 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:16:02,905 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:16:02,955 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:16:07,499 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:16:08,530 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:16:08,579 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-25 23:21:33,471 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such table: scholarships
+[SQL: SELECT students.STUDENT_ID, students.FIRST_NAME, students.LAST_NAME, students.GPA, students.MAJOR, scholarships.SCHOLARSHIP_AMOUNT
+FROM students
+LEFT JOIN scholarships ON students.STUDENT_ID = scholarships.STUDENT_ID;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:21:33,471 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: scholarships
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 56, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: scholarships
+[SQL: SELECT students.STUDENT_ID, students.FIRST_NAME, students.LAST_NAME, students.GPA, students.MAJOR, scholarships.SCHOLARSHIP_AMOUNT
+FROM students
+LEFT JOIN scholarships ON students.STUDENT_ID = scholarships.STUDENT_ID;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 118, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 62, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such table: scholarships
+[SQL: SELECT students.STUDENT_ID, students.FIRST_NAME, students.LAST_NAME, students.GPA, students.MAJOR, scholarships.SCHOLARSHIP_AMOUNT
+FROM students
+LEFT JOIN scholarships ON students.STUDENT_ID = scholarships.STUDENT_ID;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:22:03,229 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:23:26,861 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 115, in query_table
+    sql = extract_sql_statement(sql_raw)
+  File "/Applications/NL2SQL/app/routers/query.py", line 51, in extract_sql_statement
+    sql_stmt = text_out.split('\n\n', 1).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+2025-07-25 23:23:32,010 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) misuse of aggregate: AVG()
+[SQL: SELECT AVG(GPA) AS fifth_highest_GPA
+FROM (
+  SELECT GPA, ROW_NUMBER() OVER (ORDER BY GPA DESC) as rn
+  FROM students
+  WHERE GPA NOT IN (
+    SELECT AVG(GPA)
+    FROM (
+      SELECT AVG(GPA) AS avg_GPA
+      FROM students
+      GROUP BY MAJOR
+      HAVING COUNT(*) >= 5
+    )
+  )
+) subquery
+WHERE subquery.rn = 5;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:23:32,011 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: misuse of aggregate: AVG()
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 56, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) misuse of aggregate: AVG()
+[SQL: SELECT AVG(GPA) AS fifth_highest_GPA
+FROM (
+  SELECT GPA, ROW_NUMBER() OVER (ORDER BY GPA DESC) as rn
+  FROM students
+  WHERE GPA NOT IN (
+    SELECT AVG(GPA)
+    FROM (
+      SELECT AVG(GPA) AS avg_GPA
+      FROM students
+      GROUP BY MAJOR
+      HAVING COUNT(*) >= 5
+    )
+  )
+) subquery
+WHERE subquery.rn = 5;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 118, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 62, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) misuse of aggregate: AVG()
+[SQL: SELECT AVG(GPA) AS fifth_highest_GPA
+FROM (
+  SELECT GPA, ROW_NUMBER() OVER (ORDER BY GPA DESC) as rn
+  FROM students
+  WHERE GPA NOT IN (
+    SELECT AVG(GPA)
+    FROM (
+      SELECT AVG(GPA) AS avg_GPA
+      FROM students
+      GROUP BY MAJOR
+      HAVING COUNT(*) >= 5
+    )
+  )
+) subquery
+WHERE subquery.rn = 5;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:23:43,402 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such column: any_other_student_id
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = any_other_student_id);]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:23:43,403 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: any_other_student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 56, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: any_other_student_id
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = any_other_student_id);]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 118, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 62, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such column: any_other_student_id
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = any_other_student_id);]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:24:04,377 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) near "SELECT": syntax error
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = ANY(SELECT STUDENT_ID FROM students WHERE GPA = s.GPA));]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:24:04,377 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "SELECT": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 56, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "SELECT": syntax error
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = ANY(SELECT STUDENT_ID FROM students WHERE GPA = s.GPA));]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 118, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 62, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) near "SELECT": syntax error
+[SQL: SELECT * FROM students WHERE GPA = (SELECT GPA FROM students WHERE STUDENT_ID = ANY(SELECT STUDENT_ID FROM students WHERE GPA = s.GPA));]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-25 23:25:24,343 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:25:51,024 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 115, in query_table
+    sql = extract_sql_statement(sql_raw)
+  File "/Applications/NL2SQL/app/routers/query.py", line 51, in extract_sql_statement
+    sql_stmt = text_out.split('\n\n', 1).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+2025-07-25 23:25:56,359 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:26:03,131 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:26:15,323 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:26:31,622 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:27:01,009 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:28:21,250 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:28:45,563 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:29:10,650 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:29:35,026 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:29:43,660 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:31:30,037 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:31:50,577 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:32:00,656 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:32:10,489 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:32:26,870 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:32:52,575 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:32:59,227 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 115, in query_table
+    sql = extract_sql_statement(sql_raw)
+  File "/Applications/NL2SQL/app/routers/query.py", line 51, in extract_sql_statement
+    sql_stmt = text_out.split('\n\n', 1).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+2025-07-25 23:33:21,219 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:33:50,075 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:34:18,951 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:34:34,335 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 117, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 22, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-25 23:37:42,789 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-25 23:37:43,798 - app.db.dynamic_models - INFO - Database initialized
+2025-07-25 23:37:43,868 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:08:28,641 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 00:08:29,571 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:08:29,644 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:09:21,259 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 00:09:21,954 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:09:25,021 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:09:31,538 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:09:31,601 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:11:14,307 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 00:11:15,220 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:11:15,323 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:11:35,486 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 00:11:37,130 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:11:37,191 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 00:15:03,967 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 00:15:04,816 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 00:15:04,895 - root - INFO - NL2SQL Playground API is starting up...

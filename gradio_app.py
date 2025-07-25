@@ -62,21 +62,33 @@ def insert_row(table, values):
         except Exception:
             return False, resp.text
 
-def run_query(table, nl_query):
+def run_query(tbls, nl_query):
+    # tbls: can be string (single) or list
+    if isinstance(tbls, str):
+        tbls = [tbls]
+    elif not isinstance(tbls, list):
+        tbls = []
+
     payload = {
-        "table_name": table,
+        "table_names": tbls,
         "question": nl_query
     }
-    resp = requests.post(f"{API_BASE}/query", headers=HEADERS, json=payload)
-    if resp.status_code == 200:
-        d = resp.json()
-        return d.get("sql", ""), d.get("results", []), None
-    else:
-        try:
-            err = resp.json().get("error")
-        except Exception:
-            err = resp.text
-        return "", [], err
+
+    try:
+        resp = requests.post(f"{API_BASE}/query", headers=HEADERS, json=payload)
+        if resp.status_code == 200:
+            d = resp.json()
+            return d.get("sql", ""), d.get("results", []), None
+        else:
+            # Try to parse detailed error message, fallback to raw text
+            try:
+                err = resp.json().get("detail") or resp.json().get("error")
+            except Exception:
+                err = resp.text
+            return "", [], err
+    except Exception as e:
+        return "", [], str(e)
+
 
 # Gradio UI tabs/app logic
 
@@ -223,26 +235,39 @@ def build_insert_tab():
 def build_query_tab():
     with gr.Tab("Query Table"):
         refresh_btn = gr.Button("🔄 Refresh Tables")
-        tbl_selector = gr.Dropdown(label="Select Table")
+        tbl_selector = gr.Dropdown(choices=list(get_tables().keys()), multiselect=True)
         schema_md = gr.Markdown()
         nl_query = gr.Textbox(label="Ask in natural language", lines=1)
         run_btn = gr.Button("Run Query 🤖")
         out_sql = gr.Textbox(label="Generated SQL", interactive=False)
         out_results = gr.Dataframe(label="Results")
         out_msg = gr.Markdown()
+
         def refresh_query_tables():
             choices = list(get_tables().keys())
-            return gr.update(choices=choices, value=choices[0] if choices else None)
+            return gr.update(choices=choices, value=choices if choices else [])
+
         refresh_btn.click(refresh_query_tables, outputs=tbl_selector)
-        def on_tbl_select(tbl):
-            schema = get_schema(tbl)
-            if not schema:
-                return "_No such table._"
-            return "Schema: " + ", ".join(f"`{k}`({v})" for k, v in schema["columns"].items())
+
+        def on_tbl_select(tbls):
+            if isinstance(tbls, str):
+                tbls = [tbls]
+            elif not isinstance(tbls, list):
+                tbls = []
+            schema_parts = []
+            for tbl in tbls:
+                schema = get_schema(tbl)
+                if not schema or not schema.get("columns"):
+                    schema_parts.append(f"{tbl}: _No such table._")
+                else:
+                    cols = ", ".join(f"`{k}`({v})" for k, v in schema["columns"].items())
+                    schema_parts.append(f"{tbl}: {cols}")
+            return "\n".join(schema_parts) if schema_parts else "_No tables selected._"
+
         tbl_selector.change(on_tbl_select, tbl_selector, schema_md)
 
-        def query_run(tbl, question):
-            sql, results, err = run_query(tbl, question)
+        def query_run(tbls, question):
+            sql, results, err = run_query(tbls, question)
             if err:
                 return "", [], f"❌ {err}"
             if results and isinstance(results, list) and results:
@@ -256,6 +281,7 @@ def build_query_tab():
             inputs=[tbl_selector, nl_query],
             outputs=[out_sql, out_results, out_msg]
         )
+
 
 # App Layout
 

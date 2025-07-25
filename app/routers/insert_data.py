@@ -5,6 +5,7 @@ import csv
 import io
 import re
 from pydantic import BaseModel
+from datetime import datetime, date
 
 from ..db.dynamic_models import get_dynamic_model, schema_cache, get_db
 from ..models.request_models import ErrorResponse
@@ -71,24 +72,45 @@ async def insert_data(
             )
         expected_columns = set(schema['columns'].keys())
         inserted_count = 0
+        # Normalize schema keys
+        normalized_columns = {clean_column_name(k): k for k in schema["columns"].keys()}
+
         for row in rows:
             try:
                 clean_row = {}
                 for col_name, value in row.items():
                     clean_col_name = clean_column_name(col_name)
-                    if clean_col_name not in expected_columns:
-                        logger.warning(f"Skipping unknown column: {col_name}")
+                    actual_col_name = normalized_columns.get(clean_col_name)
+
+                    if actual_col_name is None:
                         continue
+
                     clean_value = value.strip() if isinstance(value, str) else value
                     if clean_value == "":
                         clean_value = None
-                    clean_row[clean_col_name] = clean_value
+
+                    # Optional: Date parsing (only if actual column is datetime/date)
+                    if schema["columns"][actual_col_name] in ["datetime", "date"] and clean_value:
+                        try:
+                            clean_value = date.fromisoformat(clean_value)
+                        except Exception as e:
+                            logger.warning(f"Could not parse {actual_col_name} '{clean_value}': {e}")
+                            clean_value = None
+
+                    clean_row[actual_col_name] = clean_value
+
+                if not clean_row:
+                    logger.warning(f"No matching columns found in row: {row}")
+                    continue
+
                 db_row = model_class(**clean_row)
                 db.add(db_row)
                 inserted_count += 1
+
             except Exception as e:
                 logger.error(f"Error inserting row {row}: {str(e)}")
                 continue
+
         db.commit()
         return {
             "success": True,
