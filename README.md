@@ -8,10 +8,11 @@ A full-stack AI-powered tool that allows anyone to **create tables**, **insert d
 ## 📦 What This Project Does
 
 The goal of NL2SQL Playground is to enable non-technical users and developers alike to:
-- Dynamically **create SQL tables** through intuitive UI or CLI
-- **Insert values** using smart auto-generated forms
-- **Ask natural language questions**, translated to SQL using LLMs
-- **View results and the SQL** used transparently
+- Dynamically **create SQL tables** through intuitive UI or CLI.
+- **Insert values** using smart auto-generated forms.
+- **Ask natural language questions**, translated to SQL using LLMs.
+- **View results and the SQL** used transparently.
+- **Understand query generation** with **Chain-of-Thought explainability**, which provides step-by-step reasoning for every query.
 
 Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and accurate NL-to-SQL transformation.
 
