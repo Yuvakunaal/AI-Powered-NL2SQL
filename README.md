@@ -24,7 +24,7 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 | 🏗 Table Creation | • UI: Choose field count, table name, and set each column's name + datatype via dropdown<br>• Dynamic SQLAlchemy model generation<br>• Auto-delete on duplicate tables |
 | 📥 Data Insertion | • UI: Select table → dynamically generated form based on schema fields<br>• CLI: Accepts CSV-style strings for batch insert |
 | 📊 Show Tables | • UI displays all created tables, including field names & datatypes |
-| ❓ NL-to-SQL Querying | • UI: Pick table → ask NL question → get SQL + result<br>• LLM: OpenRouter + Mistral-7B converts natural language into `SELECT` SQL<br>• Both SQL query and table output are shown |
+| ❓ NL-to-SQL Querying | • UI: Pick table → ask NL question → get SQL + result<br>• LLM: OpenRouter + Mistral-7B converts natural language into `SELECT` SQL<br>• Supports complex queries including joins<br>• **Chain-of-Thought explainability**: Returns step-by-step reasoning for each query<br>• Both SQL query and table output are shown |
 | 🧑‍💻 CLI Support | • Text prompts to create tables, insert data via CSV, and ask NL questions<br>• Built using Colorama and Tabulate for user-friendly experience |
 | 🛡 Security | • Blocks destructive SQL (`DROP`, `DELETE`, `UPDATE`, etc.)<br>• All execution uses parameterised `sqlalchemy.text` queries |
 | 🧪 Testing | • `test_api.py` covers full create → insert → query flow |
@@ -59,9 +59,11 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
   `SELECT AVG(gpa) FROM students;`  
   `SELECT students.name FROM students JOIN scores ON students.id = scores.student_id WHERE scores.math > 90;`
 - Supports queries with joins for multi-table operations.
+- **Chain-of-Thought explainability**: Provides step-by-step reasoning for how the query was generated.
 - UI shows:
   - Generated SQL
   - Output table with results
+  - Reasoning block explaining the query generation process.
 
 ---
 
@@ -80,6 +82,7 @@ Flow:
 3. Insert rows using dynamically generated forms based on table schema.
 4. Query selected table/s using natural language.
 5. View SQL query and output results directly in the web interface.
+6. **Chain-of-Thought explainability**: Step-by-step reasoning for query generation is displayed below table output.
 
 ---
 
@@ -93,10 +96,11 @@ python cli_nl2sql.py
 
 Flow:
 
-1. Prompt to enter table name and define fields
-2. Insert rows by entering CSV-style data
-3. Query selected table using natural language
-4. SQL result + output shown directly in terminal
+1. Prompt to enter table name and define fields.
+2. Insert rows by entering CSV-style data.
+3. Query selected table using natural language.
+4. SQL result + output shown directly in terminal.
+5. **Chain-of-Thought explainability**: Step-by-step reasoning for query generation is displayed in the terminal.
 
 ---
 
@@ -106,7 +110,7 @@ Flow:
 |--------|----------|-------------|
 | POST   | `/api/create_table` | Create SQL table from NL column description |
 | POST   | `/api/insert_data`  | Insert rows into table (`table_name`, `data`) |
-| POST   | `/api/query`        | Convert natural language → SQL (including joins) → return results |
+| POST   | `/api/query`        | Convert natural language → SQL (including joins) → return results + reasoning block |
 | GET    | `/api/schema/{tbl}` | View schema of one table |
 | GET    | `/api/schemas`      | List all tables & their schemas |
 | DELETE | `/api/schema/{tbl}` | Drop a specific table |
