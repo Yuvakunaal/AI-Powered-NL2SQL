@@ -4,7 +4,7 @@ import requests
 API_BASE = "http://127.0.0.1:8000/api"
 HEADERS = {"Content-Type": "application/json"}
 
-# API helpers
+# --- API Helpers ---
 
 def get_tables():
     try:
@@ -31,38 +31,44 @@ def create_table(table_name, field_defs):
         "definition_type": "natural_language",
         "nl_definition": nl_def
     }
-    requests.delete(f"{API_BASE}/schema/{table_name}")
-    resp = requests.post(f"{API_BASE}/create_table", headers=HEADERS, json=payload)
-    if resp.status_code == 200:
-        return True, "Table created successfully!"
-    else:
-        try:
-            return False, resp.json().get("error", resp.text)
-        except Exception:
-            return False, resp.text
+    try:
+        # Delete existing table before creating (idempotent)
+        requests.delete(f"{API_BASE}/schema/{table_name}")
+        resp = requests.post(f"{API_BASE}/create_table", headers=HEADERS, json=payload)
+        if resp.status_code == 200:
+            return True, "Table created successfully!"
+        else:
+            try:
+                return False, resp.json().get("error", resp.text)
+            except Exception:
+                return False, resp.text
+    except Exception as e:
+        return False, str(e)
 
 def insert_row(table, values):
     schema = get_schema(table)
     if not schema:
         return False, f"Table '{table}' not found."
     cols = [k for k in schema["columns"].keys()]
-    # Note: len(values) might be larger if previous widgets are hanging around, zip it for safety
     use_values = values[:len(cols)]
     csv_str = ','.join(cols) + "\n" + ','.join(str(v) for v in use_values)
     payload = {
         "table_name": table,
         "data": csv_str
     }
-    resp = requests.post(f"{API_BASE}/insert_data", headers=HEADERS, json=payload)
-    if resp.status_code == 200:
-        return True, "Inserted!"
-    else:
-        try:
-            return False, resp.json().get("error", resp.text)
-        except Exception:
-            return False, resp.text
+    try:
+        resp = requests.post(f"{API_BASE}/insert_data", headers=HEADERS, json=payload)
+        if resp.status_code == 200:
+            return True, "Inserted!"
+        else:
+            try:
+                return False, resp.json().get("error", resp.text)
+            except Exception:
+                return False, resp.text
+    except Exception as e:
+        return False, str(e)
 
-def run_query(tbls, nl_query, explain=False):
+def run_query(tbls, nl_query):
     if isinstance(tbls, str):
         tbls = [tbls]
     elif not isinstance(tbls, list):
@@ -70,7 +76,6 @@ def run_query(tbls, nl_query, explain=False):
     payload = {
         "table_names": tbls,
         "question": nl_query,
-        "explain": explain
     }
     try:
         resp = requests.post(f"{API_BASE}/query", headers=HEADERS, json=payload)
@@ -86,9 +91,7 @@ def run_query(tbls, nl_query, explain=False):
     except Exception as e:
         return "", [], "", str(e)
 
-
-
-# Gradio UI tabs/app logic
+# --- UI Tabs Definition ---
 
 def build_create_tab():
     dtype_opts = ["int", "float", "text", "datetime"]
@@ -108,34 +111,32 @@ def build_create_tab():
         create_btn = gr.Button("Create Table 🚀", interactive=True)
         output = gr.Markdown()
 
-    def _adjust_fields(count):
-        vis = []
-        for idx, (r, _, _) in enumerate(fields):
-            vis.append(gr.update(visible=(idx < count)))
-        return vis
+        def _adjust_fields(count):
+            vis = []
+            for idx, (r, _, _) in enumerate(fields):
+                vis.append(gr.update(visible=(idx < count)))
+            return vis
 
-    n_fields.change(_adjust_fields, n_fields, [r for r, _, _ in fields])
+        n_fields.change(_adjust_fields, n_fields, [r for r, _, _ in fields])
 
-    def _do_create(table_name, n_fields_val, *args):
-        pairs = [(args[i].strip(), args[i + 1].strip()) for i in range(0, n_fields_val * 2, 2)]
-        ok, msg = create_table(table_name, pairs)
-        if ok:
-            return gr.update(value=f"✅ **{msg}**")
-        else:
-            return gr.update(value=f"❌ **{msg}**")
+        def _do_create(table_name, n_fields_val, *args):
+            pairs = [(args[i].strip(), args[i + 1].strip()) for i in range(0, int(n_fields_val) * 2, 2)]
+            ok, msg = create_table(table_name, pairs)
+            if ok:
+                return gr.update(value=f"✅ **{msg}**")
+            else:
+                return gr.update(value=f"❌ **{msg}**")
 
-    def on_create_click(*args):
-        tn, n, *rest = args
-        n = int(n)
-        return _do_create(tn, n, *rest)
+        def on_create_click(*args):
+            tn, n, *rest = args
+            return _do_create(tn, n, *rest)
 
-    create_btn.click(
-        on_create_click,
-        inputs=[table_name, n_fields] + sum([[f[1], f[2]] for f in fields], []),
-        outputs=output
-    )
-
-    _adjust_fields(3)
+        create_btn.click(
+            on_create_click,
+            inputs=[table_name, n_fields] + sum([[f[1], f[2]] for f in fields], []),
+            outputs=output
+        )
+        _adjust_fields(3)
     return
 
 def build_show_tab():
@@ -144,60 +145,55 @@ def build_show_tab():
         table_selector = gr.Dropdown([], label="Tables", interactive=True)
         show_output = gr.Markdown()
 
-    def _refresh_tables():
-        schemas = get_tables()
-        names = list(schemas.keys())
-        tbls = []
-        for t in names:
-            cols = schemas[t]["columns"]
-            schema_line = ", ".join(f"`{k}` ({v})" for k, v in cols.items())
-            tbls.append(f"- **{t}**: {schema_line}")
-        info = "\n".join(tbls) if tbls else "_No tables found._"
-        return gr.update(choices=names), gr.update(value=info)
+        def _refresh_tables():
+            schemas = get_tables()
+            names = list(schemas.keys())
+            tbls = []
+            for t in names:
+                cols = schemas[t]["columns"]
+                schema_line = ", ".join(f"`{k}` ({v})" for k, v in cols.items())
+                tbls.append(f"- **{t}**: {schema_line}")
+            info = "\n".join(tbls) if tbls else "_No tables found._"
+            return gr.update(choices=names), gr.update(value=info)
 
-    reload_btn.click(_refresh_tables, outputs=[table_selector, show_output])
-    table_selector.change(_refresh_tables, outputs=[table_selector, show_output])
+        reload_btn.click(_refresh_tables, outputs=[table_selector, show_output])
+        table_selector.change(_refresh_tables, outputs=[table_selector, show_output])
+    return
 
 def build_insert_tab():
     with gr.Tab("Insert Data"):
         refresh_btn = gr.Button("🔄 Refresh Tables")
         table_selector = gr.Dropdown(label="Choose Table", choices=list(get_tables().keys()))
-        
-        # Create a fixed number of textboxes (we'll show/hide as needed)
+
         field_textboxes = []
-        for i in range(10):  # Support up to 10 fields
+        for i in range(10):
             tb = gr.Textbox(label=f"Field {i+1}", visible=False)
             field_textboxes.append(tb)
-        
+
         insert_btn = gr.Button("Insert Row 📝")
         result_md = gr.Markdown()
 
         def refresh_tables():
             choices = list(get_tables().keys())
             return gr.update(choices=choices, value=choices[0] if choices else None)
-        
+
         refresh_btn.click(refresh_tables, outputs=table_selector)
 
         def on_table_select(table_name):
             schema = get_schema(table_name)
             updates = []
-            
             if not schema or not schema.get("columns"):
-                # Hide all fields
                 for tb in field_textboxes:
                     updates.append(gr.update(visible=False))
                 updates.append(gr.update(value="Please select a valid table."))
                 return updates
-            
             cols = list(schema["columns"].items())
-            # Show and label the right number of fields
             for i, tb in enumerate(field_textboxes):
                 if i < len(cols):
                     col_name, col_type = cols[i]
                     updates.append(gr.update(visible=True, label=f"{col_name} ({col_type})", value=""))
                 else:
                     updates.append(gr.update(visible=False))
-            
             updates.append(gr.update(value="**Enter values for fields:**"))
             return updates
 
@@ -210,15 +206,11 @@ def build_insert_tab():
         def do_insert(table_name, *values):
             if not table_name:
                 return "❌ Please select a table."
-            
             schema = get_schema(table_name)
             if not schema:
                 return "❌ Table not found!"
-            
-            # Only use values for visible fields
             n_cols = len(schema["columns"])
             vals = list(values)[:n_cols]
-            
             ok, msg = insert_row(table_name, vals)
             return ("✅ " if ok else "❌ ") + msg
 
@@ -227,8 +219,7 @@ def build_insert_tab():
             inputs=[table_selector] + field_textboxes,
             outputs=result_md
         )
-
-
+    return
 
 def build_query_tab():
     with gr.Tab("Query Table"):
@@ -236,12 +227,16 @@ def build_query_tab():
         tbl_selector = gr.Dropdown(choices=list(get_tables().keys()), multiselect=True)
         schema_md = gr.Markdown()
         nl_query = gr.Textbox(label="Ask in natural language", lines=1)
-        explain_checkbox = gr.Checkbox(label="Show step-by-step explanation", value=False)
+
         run_btn = gr.Button("Run Query 🤖")
         out_sql = gr.Textbox(label="Generated SQL", interactive=False)
         out_results = gr.Dataframe(label="Results")
-        out_explanation = gr.Markdown()
         out_msg = gr.Markdown()
+        explanation_hidden = gr.Markdown(visible=False, value="")
+        show_expl_btn = gr.Button("Show Explanation", visible=False)
+        hide_expl_btn = gr.Button("Hide Explanation", visible=False)
+
+        # --- Table/Schema UI Logic ---
 
         def refresh_query_tables():
             choices = list(get_tables().keys())
@@ -266,12 +261,21 @@ def build_query_tab():
 
         tbl_selector.change(on_tbl_select, tbl_selector, schema_md)
 
-        def query_run(tbls, question, explain):
-            sql, results, explanation, err = run_query(tbls, question, explain)
-            if err:
-                return "", [], "", f"❌ {err}"
+        # --- Main Query Logic ---
 
-            # Only process table if there are any results AND the first row is a dict
+        def query_run(tbls, question):
+            sql, results, explanation, err = run_query(tbls, question)
+            show_expl = False if not explanation else True
+            if err:
+                return (
+                    "",  # out_sql
+                    [],  # out_results
+                    err,  # out_msg shows error
+                    gr.update(visible=False, value=""),  # explanation_hidden cleared & hidden
+                    gr.update(visible=False),  # hide_expl_btn hidden
+                    gr.update(visible=False)   # show_expl_btn hidden
+                )
+            # Process results if possible
             if (
                 results
                 and isinstance(results, list)
@@ -280,22 +284,59 @@ def build_query_tab():
             ):
                 cols = list(results[0].keys())
                 data = [[row.get(k, "") for k in cols] for row in results]
-                return sql, gr.update(value=data, headers=cols), explanation or "", ""
+                return (
+                    sql,
+                    gr.update(value=data, headers=cols),
+                    "",   # Clear message when no error
+                    gr.update(visible=False, value=explanation),  # Store explanation hidden
+                    gr.update(visible=False),  # hide_expl_btn hidden initially
+                    gr.update(visible=show_expl)  # show_expl_btn visible if explanation
+                )
             else:
-                # No results or not a list of dicts -- return empty table and explanation if present
-                return sql, [], explanation or "", ""
+                return (
+                    sql,
+                    [],   # Empty results
+                    "",   # Clear message when no error
+                    gr.update(visible=False, value=explanation),
+                    gr.update(visible=False),
+                    gr.update(visible=show_expl)
+                )
 
+        # --- Explanation Show/Hide Handlers ---
 
+        def show_explanation_handler(explanation):
+            return (
+                gr.update(visible=True, value=f"**Explanation:**<br>{explanation}"),
+                gr.update(visible=True),  # Show hide button
+                gr.update(visible=False)  # Hide show button
+            )
+
+        def hide_explanation_handler():
+            return (
+                gr.update(visible=False, value=""),
+                gr.update(visible=False),
+                gr.update(visible=True)
+            )
+
+        # Bind buttons
         run_btn.click(
             query_run,
-            inputs=[tbl_selector, nl_query, explain_checkbox],
-            outputs=[out_sql, out_results, out_explanation, out_msg]
+            inputs=[tbl_selector, nl_query],
+            outputs=[out_sql, out_results, out_msg, explanation_hidden, hide_expl_btn, show_expl_btn]
+        )
+        show_expl_btn.click(
+            show_explanation_handler,
+            inputs=[explanation_hidden],
+            outputs=[explanation_hidden, hide_expl_btn, show_expl_btn]
+        )
+        hide_expl_btn.click(
+            hide_explanation_handler,
+            None,
+            outputs=[explanation_hidden, hide_expl_btn, show_expl_btn]
         )
 
 
-
-
-# App Layout
+# --- App Layout ---
 
 with gr.Blocks(title="NL2SQL Playground UI") as demo:
     gr.Markdown(

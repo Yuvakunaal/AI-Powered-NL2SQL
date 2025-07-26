@@ -3917,3 +3917,689 @@ UnboundLocalError: cannot access local variable 'explain' where it is not associ
 2025-07-26 11:51:22,967 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students ORDER BY age ASC;\n\nExplanation:\n1. The question asks for all students, so we need to select all records from the students table.\n2. The question asks for the students in ascending order of age, so we need to add an ORDER BY clause with the 'age' column and the ASC keyword."
 2025-07-26 11:51:27,365 - app.routers.query - INFO - Semantic cache HIT for NL query
 2025-07-26 11:51:28,611 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:57:59,979 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students WHERE age < (SELECT MIN(age) FROM students);\n\nExplanation: To find a student who is younger than all other students, we first need to find the minimum age of all students. We do this by using a subquery to select the minimum age from the students table. Then, in the main query, we select all records where the age is less than the minimum age found in the subquery.'
+2025-07-26 11:58:08,884 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:58:12,815 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students WHERE age < (SELECT MIN(age) FROM students);'
+2025-07-26 11:58:23,391 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:58:25,554 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:58:41,536 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:59:04,491 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students WHERE age IN (SELECT age FROM students GROUP BY age HAVING COUNT(*) > 1);\n\nExplanation:\n1. To find all students with the same age, we first need to group students by their age using the GROUP BY clause.\n2. Then, we count the number of students for each age group using the COUNT(*) function and HAVING clause.\n3. Finally, we select all rows where the count is greater than 1, which means there are multiple students with the same age.'
+2025-07-26 11:59:08,072 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students WHERE age IN (SELECT age FROM students GROUP BY age HAVING COUNT(*) > 1);'
+2025-07-26 11:59:10,345 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:59:12,930 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:59:14,702 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 12:00:03,261 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT teachers.name AS teacher_name, people.name AS person_name\nFROM teachers\nJOIN people;\n\nExplanation: To join two tables in SQLite, we use the JOIN keyword. In this case, we want to join the `teachers` and `people` tables, so we use a JOIN statement. Since we don't have any specific conditions for the join, we use an implicit join (also known as a cross join or cartesian product) by not specifying any join condition. We then alias the columns from each table using the AS keyword to avoid naming conflicts and make the results more readable. The resulting query will return all rows from both tables, with columns from the `teachers` table and the `people` table side by side."
+2025-07-26 12:00:03,261 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 154, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:00:06,997 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name AS teacher_name, people.name AS person_name FROM teachers INNER JOIN people;'
+2025-07-26 12:00:14,757 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT teachers.name AS teacher_name, people.name AS person_name\nFROM teachers\nJOIN people;\n\nExplanation: To join two tables in SQLite, we use the JOIN keyword. In this case, we want to join the teachers and people tables, so we write a SQL query that selects columns from both tables and uses the JOIN keyword to combine the rows where the conditions match. Since there are no conditions specified in the question, we assume that we want all rows from both tables where there is a match, so we don't need a WHERE clause. We also alias the names of the columns from both tables to avoid confusion, as they have the same name (name). The resulting SQL query selects the name column from the teachers table and the name column from the people table, and joins the rows from both tables using the default INNER JOIN, which selects only the rows where there is a match in both tables."
+2025-07-26 12:00:14,757 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 154, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:02:04,558 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 12:22:47,228 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:22:48,039 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:22:48,103 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:22:48,128 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:22:48,130 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:22:51,160 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:22:51,160 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:22:54,790 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:23:01,359 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:23:01,992 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:23:34,385 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:24:29,443 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:24:39,801 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:24:41,771 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:24:41,836 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:24:41,863 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:24:41,866 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:24:44,990 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:24:44,990 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:24:48,565 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:24:57,668 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:24:59,046 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:24:59,104 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:24:59,115 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:24:59,118 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:25:01,595 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:25:01,595 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:25:05,206 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:25:31,899 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT teachers.name, people.name\nFROM teachers\nJOIN people\nON teachers.id = people.id;\n\nExplanation: The question asks to join both tables. In SQLite, we use the JOIN keyword to combine rows from two or more tables based on a related column between them. Since there's no common column between the tables, we can't join them directly. However, if we assume that the id column in both tables is the same (which is not specified in the provided schema), we can join the tables on that id column. The SELECT statement selects the name column from both tables."
+2025-07-26 12:25:31,900 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 160, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:25:48,228 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name as teacher_name, people.name as person_name\nFROM teachers\nJOIN people\nON teachers.id = people.id;\n\nExplanation: The question asks to join the teachers and people tables. Since there is no relationship defined between the tables, we join them on their common column, which is the id. The SELECT statement retrieves the names from both tables, renaming them for clarity.'
+2025-07-26 12:25:56,100 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name AS teacher_name, people.name AS person_name, teachers.branch, people.dob\nFROM teachers\nJOIN people ON 1=1;'
+2025-07-26 12:26:01,073 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 12:26:13,220 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name AS teacher_name, people.name AS person_name\nFROM teachers\nJOIN people ON teachers.id = people.id;\n\nExplanation: The question asks to join the `teachers` and `people` tables by their common `id` column. To do this, we use the `JOIN` keyword in SQLite, specifying the `teachers` table as the left table and the `people` table as the right table. We then alias the `name` column from both tables to make it clear which name belongs to which table. The `ON` clause specifies the condition for the join, which is that the `id` values in both tables should match.'
+2025-07-26 12:26:13,220 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 160, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:26:18,576 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name AS teacher_name, people.name AS person_name, teachers.branch, people.dob\nFROM teachers\nJOIN people ON teachers.id = people.id;'
+2025-07-26 12:26:22,976 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT teachers.name AS teacher_name, people.name AS person_name\nFROM teachers\nJOIN people ON teachers.id = people.id;\n\nExplanation: The user wants to join the `teachers` and `people` tables based on the common `id` column. To achieve this, we use the `JOIN` keyword in SQLite, and specify the `teachers` table as the left table, and the `people` table as the right table. We also alias the `name` column from both tables to make the result easier to read, and select both aliased `name` columns in the `SELECT` statement.'
+2025-07-26 12:26:22,977 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 160, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:26:33,104 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 12:30:27,358 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:30:28,180 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:30:28,242 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:30:28,268 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:30:28,271 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:30:31,303 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:30:31,304 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:30:34,910 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:30:51,295 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:30:51,924 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:30:51,987 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:30:52,002 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:30:52,005 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:30:54,886 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:30:54,886 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:30:58,417 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:31:41,548 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:31:42,209 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:31:42,267 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:31:42,279 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:31:42,282 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:31:44,991 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:31:44,991 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:31:48,458 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:31:55,833 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:31:57,155 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:31:57,214 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:31:57,226 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:31:57,229 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:31:59,701 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:31:59,701 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:32:03,251 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:33:53,597 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:33:54,399 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:33:54,463 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:33:54,494 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:33:54,497 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:33:57,718 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:33:57,718 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:34:01,344 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:34:41,843 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is "products".\n2. Determine the columns to select: Since the question asks for all products, we need to select all columns. In SQLite, the asterisk (*) is used to select all columns.\n3. Determine the condition: Since there is no condition specified in the question, we will not include a WHERE clause.\n4. Write the SQL query: The SQL query is SELECT * FROM products. This query will return all rows and all columns from the "products" table.'
+2025-07-26 12:34:41,844 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 149, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:38:11,568 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:38:12,415 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:38:12,482 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:38:12,509 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:38:12,511 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:38:15,778 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:38:15,778 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:38:19,482 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:38:26,387 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. The user\'s question is "show all products".\n2. To answer this question, we need to retrieve all records from the products table.\n3. Since there are no relationships defined, we can directly use the SELECT statement with an asterisk (*) to select all columns and FROM clause to specify the table name.\n4. The WHERE clause is not necessary since we don\'t have any filtering conditions.\n5. The ORDER BY clause is also not necessary since the question does not specify any sorting criteria.\n6. The query should return all records from the products table.\n\nThis query will return the following columns: id, name, and type for each record in the products table.\n\nNote: SQLite is case-insensitive, so you can use lowercase or uppercase keywords like SELECT, FROM, and * in your queries.'
+2025-07-26 12:38:26,389 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 149, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:38:57,000 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM products;\n\nExplanation:\n1. Identify the table(s) involved: In this case, the table is 'products'.\n2. Determine the columns to select: Since the question asks for all records, we select all columns by using the asterisk (*).\n3. Formulate the SQL query: The SQL query to select all records from the 'products' table is 'SELECT * FROM products'."
+2025-07-26 12:38:57,001 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 149, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:39:17,163 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM products;\n\nExplanation:\n1. The user's question is asking for all products in the table.\n2. Since there are no relationships defined, we only need to access the products table.\n3. To retrieve all records from the table, we use the SELECT statement with an asterisk (*) to select all columns.\n4. Finally, we specify the table name (products) and end the query with a semicolon (;) to indicate the end of the SQL statement."
+2025-07-26 12:39:17,163 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 149, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:40:55,019 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:40:55,639 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:40:55,699 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:40:55,711 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:40:55,714 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:40:58,436 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:40:58,436 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:41:02,123 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:41:07,276 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:41:07,878 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:41:13,306 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:41:15,363 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:41:15,429 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:41:15,442 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:41:15,444 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:41:18,397 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:41:18,397 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:41:21,958 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:41:46,916 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:41:48,330 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:41:48,390 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:41:48,403 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:41:48,405 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:41:51,197 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:41:51,197 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:41:54,679 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:42:15,607 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. The user wants to see all the data from the products table.\n2. To achieve this, we use the SELECT statement in SQLite.\n3. The asterisk (*) is used to select all columns from the table.\n4. The FROM keyword is used to specify the table from which we want to select data.\n5. The table in this case is products.\n6. Therefore, the SQL query is SELECT * FROM products.'
+2025-07-26 12:42:15,609 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 161, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:43:52,725 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:43:53,366 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:44:14,127 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:44:25,277 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:44:34,970 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:44:35,034 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:44:35,058 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:44:35,061 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:44:38,214 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:44:38,214 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:44:41,959 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:44:42,702 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:44:42,760 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:44:42,772 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:44:42,775 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:44:45,069 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:44:45,069 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:44:48,963 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:45:07,247 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. Identify the table(s) involved: In this case, the table is "products".\n2. Determine the columns to select: Since the user wants all data, we will select all columns using the asterisk (*).\n3. Determine the filter conditions: Since there are no conditions specified, we will not filter any rows.\n4. Write the SQL query: The SQL query is "SELECT * FROM products".'
+2025-07-26 12:45:07,249 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 172, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:46:09,476 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:46:10,129 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:46:17,649 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:46:19,547 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:46:19,609 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:46:19,638 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:46:19,642 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:46:22,776 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:46:22,776 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:46:26,560 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:46:41,625 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:46:42,261 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:46:42,321 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:46:42,334 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:46:42,336 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:46:45,221 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:46:45,221 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:46:48,826 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:46:49,416 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:46:49,477 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:46:49,489 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:46:49,492 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:46:51,735 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:46:51,735 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:46:55,119 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:47:14,290 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM colleges;\n\nExplanation:\n1. The user\'s question is "show all colleges".\n2. To answer this question, we need to select all records from the "colleges" table.\n3. Since there are no relationships defined, we can simply use the SELECT statement with an asterisk (*) to select all columns and FROM clause to specify the table name.\n4. The WHERE clause is not necessary since the user does not specify any conditions.\n5. Finally, we end the query with a semicolon to indicate the end of the SQL statement.'
+2025-07-26 12:47:14,290 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 173, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:48:00,990 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:48:01,627 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:49:02,855 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:49:07,593 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:49:07,652 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:49:07,679 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:49:07,683 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:49:10,878 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:49:10,879 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:49:15,564 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:49:16,072 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:49:16,145 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:49:16,158 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:49:16,161 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:49:18,436 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:49:18,436 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:49:21,825 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:49:34,683 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM users;\n\nExplanation:\n1. The question asks for all users, which means we want to retrieve all records from the `users` table.\n2. To do this, we use the `SELECT` statement in SQLite.\n3. The `*` symbol is used to select all columns from the `users` table.\n4. The `FROM` keyword is used to specify the table we want to select data from, in this case, the `users` table.\n5. The resulting SQL query is `SELECT * FROM users;`.'
+2025-07-26 12:49:34,686 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) near "table": syntax error
+[SQL: select all columns from the `users` table.
+4. The `FROM` keyword is used to specify the table we want to select data from, in this case, the `users` table.
+5. The resulting SQL query is `SELECT * FROM users;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 12:49:34,686 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: near "table": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 108, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "table": syntax error
+[SQL: select all columns from the `users` table.
+4. The `FROM` keyword is used to specify the table we want to select data from, in this case, the `users` table.
+5. The resulting SQL query is `SELECT * FROM users;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 190, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 114, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) near "table": syntax error
+[SQL: select all columns from the `users` table.
+4. The `FROM` keyword is used to specify the table we want to select data from, in this case, the `users` table.
+5. The resulting SQL query is `SELECT * FROM users;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 12:51:06,240 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:51:06,894 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:51:16,586 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:51:18,488 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:51:18,548 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:51:18,576 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:51:18,578 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:51:21,630 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:51:21,630 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:51:25,336 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:51:25,337 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:51:28,087 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:51:28,145 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:51:28,157 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:51:28,161 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:51:30,456 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:51:30,457 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:51:33,649 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:51:52,063 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is "products".\n2. Determine the columns to be selected: Since the question asks for all products, we need to select all columns. In SQLite, the asterisk (*) is used to select all columns.\n3. Write the SQL query: The SQL query to select all records from the "products" table is "SELECT * FROM products".'
+2025-07-26 12:51:52,064 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 181, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:53:18,127 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:53:18,756 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:53:18,817 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:53:18,829 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:53:18,832 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:53:21,608 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:53:21,609 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:53:25,301 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:53:41,007 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM products;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is "products".\n2. Determine the columns to select: Since the question asks for all products, we need to select all columns. In SQLite, the asterisk (*) is used to select all columns.\n3. Determine the condition: Since there is no condition specified in the question, we will not include a WHERE clause.\n4. Determine the order: The question does not specify an order, so we will not include an ORDER BY clause.\n5. Write the SQL query: The SQL query is SELECT * FROM products.'
+2025-07-26 12:53:41,008 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 181, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:54:05,813 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:54:06,532 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:54:16,908 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:54:16,976 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:54:17,004 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:54:17,007 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:54:20,238 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:54:20,238 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:54:24,827 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:54:25,433 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:54:25,492 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:54:25,503 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:54:25,506 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:54:27,781 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:54:27,781 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:54:30,998 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:54:54,571 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM colleges;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is "colleges".\n2. Determine the desired data: Since the question asks for all data, we will select all columns (*) from the "colleges" table.\n3. Write the SQL query: The SQL query to retrieve all data from the "colleges" table is "SELECT * FROM colleges".'
+2025-07-26 12:54:54,572 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 180, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 12:58:41,986 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 12:58:42,721 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:04,193 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:06,121 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:08,898 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:16,605 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:31,178 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 12:59:31,240 - faiss.loader - INFO - Loading faiss.
+2025-07-26 12:59:31,269 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 12:59:31,272 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 12:59:34,412 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 12:59:34,412 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:59:38,016 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 12:59:54,463 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM colleges;\n\nExplanation:\n1. The question asks for all colleges, which means we want to retrieve all records from the "colleges" table.\n2. The "colleges" table contains three columns: id, name, and rank. Since the question does not specify any particular column, we use the asterisk (*) to select all columns.\n3. The SQL statement SELECT * FROM colleges will return all records from the "colleges" table, which corresponds to the user\'s question.'
+2025-07-26 13:00:25,082 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT users.username, teachers.name\nFROM users\nJOIN teachers;\n\nExplanation: To join both tables, we use the SQL JOIN keyword. The FROM clause specifies the tables to join, and the SELECT clause specifies the columns to return from the joined tables. In this case, we are joining the users and teachers tables and returning the username from the users table and the name from the teachers table. Since there are no relationships defined between the tables, we can join them on their common column (id), but since no specific column is mentioned in the question, we assume that the user wants to see all records from both tables. If a specific column was mentioned in the question, we would join the tables on that column instead.'
+2025-07-26 13:00:25,084 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 13:00:25,084 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: users.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 79, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 161, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 13:00:42,104 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT users.username, teachers.name\nFROM users\nJOIN teachers ON users.id = teachers.id;\n\nExplanation:\n1. The question asks to join the `users` and `teachers` tables.\n2. To join the tables, we use the SQL JOIN keyword.\n3. Since the question does not specify any conditions for the join, we join the tables on their common column `id`.\n4. We select the `username` from the `users` table and the `name` from the `teachers` table.\n5. The resulting SQL query is:\n\n```\nSELECT users.username, teachers.name\nFROM users\nJOIN teachers ON users.id = teachers.id;'
+2025-07-26 13:00:42,106 - app.routers.query - ERROR - Error executing SQL query: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 13:00:42,106 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: users.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 79, in execute_sql_query
+    result = db.execute(text(sql), params or {})
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Applications/NL2SQL/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 161, in query_table
+    results = execute_sql_query(db, sql)
+  File "/Applications/NL2SQL/app/routers/query.py", line 85, in execute_sql_query
+    raise ValueError(f"Error executing query: {str(e)}")
+ValueError: Error executing query: (sqlite3.OperationalError) no such column: users.username
+[SQL: SELECT users.username, teachers.name;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-26 13:02:49,458 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 13:02:50,194 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 13:02:52,695 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 13:02:56,148 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 13:02:56,214 - faiss.loader - INFO - Loading faiss.
+2025-07-26 13:02:56,242 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 13:02:56,245 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 13:02:59,341 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 13:02:59,341 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 13:03:02,965 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 13:03:20,214 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT users.username, teachers.name\nFROM users\nJOIN teachers ON users.id = teachers.id;\n\nExplanation:\n1. The question asks to join the `users` and `teachers` tables.\n2. To join the tables, we use the SQL JOIN keyword.\n3. The condition for joining the tables is that the `id` column in the `users` table should match the `id` column in the `teachers` table.\n4. Since we want to select the `username` from the `users` table and the `name` from the `teachers` table, we list these columns in the SELECT clause.\n5. The FROM clause lists the tables we are joining, and the ON clause specifies the condition for the join.\n6. The result is a table with rows that have matching `id` values from both the `users` and `teachers` tables, and the columns `username` and `name`.'
+2025-07-26 13:03:25,149 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 13:03:26,868 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 13:03:48,230 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is students.\n2. Determine the columns to select: Since the question asks for all students, we select all columns (*) from the students table.\n3. No filtering or sorting is required, so the WHERE, GROUP BY, ORDER BY clauses are not needed.\n4. The SQL query is then constructed by selecting all columns from the students table.\n\nThe SQL query is: SELECT * FROM students;'
+2025-07-26 13:04:08,915 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students ORDER BY gpa DESC;\n\nExplanation:\n1. The question asks to display all students. This implies that we need to select all columns from the students table.\n2. The question does not specify any conditions, so we do not need to use WHERE clause.\n3. The question asks for the students in descending order of GPA. This implies that we need to sort the results by the gpa column in descending order. Therefore, we use the ORDER BY clause with the DESC keyword.'
+2025-07-26 14:10:30,838 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM people;\n\nExplanation:\n1. Identify the table(s) involved in the question: In this case, the table is people.\n2. Determine the columns to select: Since the question asks for all information, we select all columns (*) from the people table.\n3. No WHERE, GROUP BY, or HAVING clauses are needed as the question asks for all records.\n4. The SQL query is then constructed accordingly.'
+2025-07-26 14:10:47,428 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM people ORDER BY id DESC;\n\nExplanation:\n1. The question asks for everyone, which means all records from the 'people' table.\n2. The question asks for the data in descending order by id, so we use the ORDER BY clause with the id column and the DESC keyword.\n3. Since there are no relationships specified, we don't need to join any other tables.\n4. The SELECT statement is used to retrieve data from the 'people' table, so we use the SELECT keyword followed by an asterisk (*) to select all columns.\n5. Finally, we have the FROM clause to specify the table we are selecting data from, which is 'people' in this case."
+2025-07-26 14:10:59,951 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 14:17:18,022 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students ORDER BY id DESC;\n\nExplanation:\n1. The question asks for everyone, which means we need to select all records from the students table.\n2. The question asks for the records in descending order, so we use the ORDER BY clause with the id column (since there's no specific column mentioned in the question, we use the id column as it's unique and should be present in every record).\n3. We use the DESC keyword to sort the results in descending order.\n4. Since there's no WHERE clause or any other conditions specified in the question, we don't include them in the query.\n5. The SELECT statement is used to select the data, and the * symbol is used to select all columns from the students table.\n6. The FROM clause is used to specify the table from which we want to select the data, in this case, the students table.\n7. The ORDER BY clause is used to sort the results in a specific order, in this case, by the id column in descending order."
+2025-07-26 14:17:23,198 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 15:05:18,952 - root - INFO - NL2SQL Playground API is shutting down...

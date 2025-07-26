@@ -22,40 +22,71 @@ def validate_sql(sql: str):
     for keyword in BLOCKED_SQL_KEYWORDS:
         if f" {keyword} " in f" {sql_upper} ":
             raise ValueError(f"Query contains blocked SQL keyword: {keyword}")
+import re
 
-def extract_sql_statement(llm_response: str) -> str:
-    text_out = llm_response.strip()
-    # Remove markdown code fences if present
-    if text_out.startswith("```sql"):
-        text_out = text_out[6:].strip()
-    if text_out.startswith("```"):
-        text_out = text_out[3:].strip()
-    if text_out.endswith("```"):
-        text_out = text_out[:-3].strip()
-    text_out = text_out.strip("`").strip()
-    text_out = re.sub(r'--.*?$', '', text_out, flags=re.MULTILINE)
-    # Only keep up to first semicolon
-    if ';' in text_out:
-        first, _ = text_out.split(';', 1)
-        sql_stmt = first.strip() + ';'
-    else:
-        sql_stmt = text_out.split('\n\n', 1)[0].strip()
-    return sql_stmt
+def extract_sql_statement(text):
+    """
+    Extract complete SQL statement including multi-line JOINs, WHERE clauses, etc.
+    """
+    if not text:
+        return ""
+    
+    text = text.strip()
+    
+    # Remove markdown
+    text = re.sub(r"```.*?\n", "", text)
+    text = re.sub(r"```\s*$", "", text)
+    
+    # Split at "Explanation:" and take only SQL part
+    if "Explanation:" in text:
+        text = text.split("Explanation:")[0].strip()
+    
+    # Extract complete multi-line SQL statement
+    lines = text.split('\n')
+    sql_lines = []
+    in_sql = False
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        if line.upper().startswith('SELECT'):
+            in_sql = True
+            sql_lines.append(line)
+        elif in_sql and line:
+            sql_lines.append(line)
+            # Stop when we hit semicolon
+            if ';' in line:
+                break
+    
+    if sql_lines:
+        complete_sql = '\n'.join(sql_lines)
+        # Clean up and ensure semicolon
+        if not complete_sql.strip().endswith(';'):
+            complete_sql += ';'
+        return complete_sql
+    
+    return ""
+
+
 
 def extract_explanation_and_sql(text):
+    """
+    Parse LLM output for SQL first, then Explanation
+    """
     text = text.strip()
-    # Case 1: Explanation: first, then SQL:
-    match = re.search(r"(?i)explanation\s*:?\s*(.*?)\s*sql\s*:?\s*(.*)", text, re.DOTALL)
-    if match:
-        return match.group(1).strip(), match.group(2).strip()
-    # Case 2: SQL first, then Explanation:
+    
+    # Split at "Explanation:" (case insensitive)
     if "Explanation:" in text:
         parts = text.split("Explanation:", 1)
-        sql = parts[0].strip()
-        explanation = parts[1].strip()
-        return explanation, sql
-    # If neither marker, treat all as SQL.
-    return "", text
+        sql_part = parts[0].strip()
+        explanation_part = parts[1].strip()
+        return explanation_part, sql_part
+    
+    # If no explanation found, treat all as SQL
+    return "", text.strip()
+
 
 
 def execute_sql_query(db: Session, sql: str, params: dict = None):
@@ -100,9 +131,8 @@ def query_table(
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"Table '{tbl}' not found"
                 )
-        # <-- SET EXPLAIN FLAG FIRST!
-        explain = getattr(request, "explain", False)
-        cache_hit = semantic_cache.search(request.question, explain_flag=explain)
+
+        cache_hit = semantic_cache.search(request.question)
         if cache_hit:
             logger.info("Semantic cache HIT for NL query")
             return {
@@ -111,58 +141,51 @@ def query_table(
                 "explanation": cache_hit.get("explanation", "(from cache)"),
                 "success": True,
             }
+
         schemas = {tbl: schema_cache.get_table_schema(tbl) for tbl in table_names}
         rels = infer_relationships(table_names)
+
         schema_str = "\n".join(
             f"{tbl}({', '.join(f'{col}({typ})' for col, typ in sch['columns'].items())})"
             for tbl, sch in schemas.items()
         )
         rels_str = "; ".join(rels) if rels else "None"
-        explain = getattr(request, "explain", False)
-        if explain:
-            system_prompt = (
-                "You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, "
-                "using only the provided schema.\n\n"
-                "Instructions:\n"
-                "1. First, explain your reasoning step-by-step for mapping the question to SQL.\n"
-                "2. Then output only the correct SQLite SELECT query.\n"
-                "3. Format:\nExplanation:<YOUR EXPLANATION>\nSQL:<YOUR SQL>"
-            )
-        else:
-            system_prompt = (
-                "You are a world-class SQLite expert. Convert the user’s question to a valid SQLite SELECT statement ONLY, "
-                "using only the schema provided. Output only the final SQL statement and nothing else."
-            )
+
+        # Always prompt for explanation + SQL
+        system_prompt = (
+            "You are a world-class SQLite expert. Convert the user's question to an efficient SQLite SELECT. "
+            "First, explain your reasoning step-by-step for mapping their question to SQL. "
+            "Then output the correct SQLite SELECT query. "
+            "Format:\nExplanation:\nSQL:"
+        )
 
         prompt = (
             f"{system_prompt}\n\n"
             f"Tables:\n{schema_str}\n"
             f"Relationships:\n{rels_str}\n"
             f"Question:\n{request.question}\n"
-            + ("Explanation:\nSQL:" if explain else "SQL:")
+            "Explanation:\nSQL:"
         )
 
         sql_raw = openrouter_client.generate_sql(prompt)
         logger.info(f"LLM RAW RESPONSE: {repr(sql_raw)}")
-
-        if explain:
-            explanation, sql = extract_explanation_and_sql(sql_raw)
-        else:
-            explanation, sql = None, sql_raw.strip()
-
-        sql = extract_sql_statement(sql)
+        explanation, sql_section = extract_explanation_and_sql(sql_raw)
+        sql = extract_sql_statement(sql_section)
+        print(f"\nTO VALIDATE: {repr(sql)}")
         validate_sql(sql)
         results = execute_sql_query(db, sql)
         if explanation:
             explanation = re.sub(r"[\s\}\]\)\>]+$", "", explanation.strip())
-            
-        semantic_cache.add(request.question, sql, results, explanation if explain else None, explain_flag=explain)
+
+        semantic_cache.add(request.question, sql, results, explanation)
+
         return {
             "sql": sql,
             "results": results or [],
             "explanation": explanation or "",
             "success": True
         }
+
     except HTTPException:
         raise
     except Exception as e:

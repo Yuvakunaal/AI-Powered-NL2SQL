@@ -1,4 +1,3 @@
-
 # 🚀 NL2SQL Playground
 
 A full-stack AI-powered tool that allows anyone to **create tables**, **insert data**, and **run SQL queries using natural language**, with both a **modern web interface** and a **colorful CLI**.
@@ -8,6 +7,7 @@ A full-stack AI-powered tool that allows anyone to **create tables**, **insert d
 ## 📦 What This Project Does
 
 The goal of NL2SQL Playground is to enable non-technical users and developers alike to:
+
 - Dynamically **create SQL tables** through intuitive UI or CLI
 - **Insert values** using smart auto-generated forms
 - **Ask natural language questions**, translated to SQL using LLMs
@@ -21,22 +21,23 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 
 ## ✨ Key Features
 
-| Area | Highlights |
-|------|------------|
-| 🏗 Table Creation | • UI: Choose field count, table name, and set each column's name + datatype via dropdown<br>• Dynamic SQLAlchemy model generation<br>• Auto-delete on duplicate tables |
-| 📥 Data Insertion | • UI: Select table → dynamically generated form based on schema fields<br>• CLI: Accepts CSV-style strings for batch insert |
-| 📊 Show Tables | • UI displays all created tables, including field names & datatypes |
+| Area                  | Highlights                                                                                                                                                                                                                                                                                                               |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 🏗 Table Creation      | • UI: Choose field count, table name, and set each column's name + datatype via dropdown<br>• Dynamic SQLAlchemy model generation<br>• Auto-delete on duplicate tables                                                                                                                                                   |
+| 📥 Data Insertion     | • UI: Select table → dynamically generated form based on schema fields<br>• CLI: Accepts CSV-style strings for batch insert                                                                                                                                                                                              |
+| 📊 Show Tables        | • UI displays all created tables, including field names & datatypes                                                                                                                                                                                                                                                      |
 | ❓ NL-to-SQL Querying | • UI: Pick table → ask NL question → get SQL + result<br>• LLM: OpenRouter + Mistral-7B converts natural language into `SELECT` SQL<br>• Supports complex queries including joins<br>• **Chain-of-Thought explainability**: Returns step-by-step reasoning for each query<br>• Both SQL query and table output are shown |
-| 🚀 Optimization | • Vectorized semantic cache for NL2SQL queries<br>• Sub-100ms retrieval for previously seen or similar questions<br>• Reduces API call costs by reusing cached SQL<br>• Enhances user experience with instant responses<br>• Lays groundwork for federated caching and horizontal scaling |
-| 🧑‍💻 CLI Support | • Text prompts to create tables, insert data via CSV, and ask NL questions<br>• Built using Colorama and Tabulate for user-friendly experience |
-| 🛡 Security | • Blocks destructive SQL (`DROP`, `DELETE`, `UPDATE`, etc.)<br>• All execution uses parameterised `sqlalchemy.text` queries |
-| 🧪 Testing | • `test_api.py` covers full create → insert → query flow |
+| 🚀 Optimization       | • Vectorized semantic cache for NL2SQL queries<br>• Sub-100ms retrieval for previously seen or similar questions<br>• Reduces API call costs by reusing cached SQL<br>• Enhances user experience with instant responses<br>• Lays groundwork for federated caching and horizontal scaling                                |
+| 🧑‍💻 CLI Support        | • Text prompts to create tables, insert data via CSV, and ask NL questions<br>• Built using Colorama and Tabulate for user-friendly experience                                                                                                                                                                           |
+| 🛡 Security            | • Blocks destructive SQL (`DROP`, `DELETE`, `UPDATE`, etc.)<br>• All execution uses parameterised `sqlalchemy.text` queries                                                                                                                                                                                              |
+| 🧪 Testing            | • `test_api.py` covers full create → insert → query flow                                                                                                                                                                                                                                                                 |
 
 ---
 
 ## 🧠 How the Web UI Works
 
 ### 🏗 Create Table
+
 - Input table name and number of fields
 - For each field, enter:
   - Field name
@@ -44,20 +45,23 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 - On submission, table is created dynamically in SQLite
 
 ### 📥 Insert Data
+
 - Pick a table from dropdown
 - UI renders form fields based on table schema
 - Enter values for each field
 - Rows are inserted via backend API
 
 ### 📊 Show Tables
+
 - Displays all tables created
 - For each table, shows field names and corresponding datatypes
 
 ### ❓ Query
+
 - Select a table
 - Ask a question like:  
   `"What is the average GPA?"`  
-  `"Which students scored above 90 in Math?"`  
+  `"Which students scored above 90 in Math?"`
 - Backend uses OpenRouter → Mistral-7B to convert to SQL:  
   `SELECT AVG(gpa) FROM students;`  
   `SELECT students.name FROM students JOIN scores ON students.id = scores.student_id WHERE scores.math > 90;`
@@ -109,14 +113,14 @@ Flow:
 
 ## 🔌 Main API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST   | `/api/create_table` | Create SQL table from NL column description |
-| POST   | `/api/insert_data`  | Insert rows into table (`table_name`, `data`) |
+| Method | Endpoint            | Description                                                                         |
+| ------ | ------------------- | ----------------------------------------------------------------------------------- |
+| POST   | `/api/create_table` | Create SQL table from NL column description                                         |
+| POST   | `/api/insert_data`  | Insert rows into table (`table_name`, `data`)                                       |
 | POST   | `/api/query`        | Convert natural language → SQL (including joins) → return results + reasoning block |
-| GET    | `/api/schema/{tbl}` | View schema of one table |
-| GET    | `/api/schemas`      | List all tables & their schemas |
-| DELETE | `/api/schema/{tbl}` | Drop a specific table |
+| GET    | `/api/schema/{tbl}` | View schema of one table                                                            |
+| GET    | `/api/schemas`      | List all tables & their schemas                                                     |
+| DELETE | `/api/schema/{tbl}` | Drop a specific table                                                               |
 
 ---
 
@@ -152,8 +156,6 @@ Tests the complete flow: table creation → data insertion → NL query → resu
 
 ---
 
-
-
 ## 📝 Skills Demonstrated
 
 - ✅ GEN AI
@@ -179,7 +181,6 @@ Tests the complete flow: table creation → data insertion → NL query → resu
 
 - Allow CSV upload for bulk inserts
 - Table editing or column renaming
-- LLM output confidence and SQL explanation
 
 ---
 

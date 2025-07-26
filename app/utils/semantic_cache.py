@@ -14,8 +14,8 @@ class SemanticNL2SQLCache:
     def embed(self, text):
         return np.array(self.model.encode([text])[0]).astype('float32')
 
-    def add(self, nl_query, sql, result, explanation=None, explain_flag=False):
-        vec = self.embed(self._cache_key(nl_query, explain_flag))
+    def add(self, nl_query, sql, result, explanation=None):
+        vec = self.embed(nl_query)
         with self.lock:
             self.index.add(np.array([vec]))
             self.cache.append({
@@ -23,29 +23,20 @@ class SemanticNL2SQLCache:
                 'sql': sql,
                 'result': result,
                 'explanation': explanation,
-                'explain_flag': explain_flag
             })
 
-
-    def search(self, nl_query, explain_flag=False, threshold=0.87, k=3):
+    def search(self, nl_query, threshold=0.87, k=3):
         if self.index.ntotal == 0:
             return None
-        vec = self.embed(self._cache_key(nl_query, explain_flag))
+        vec = self.embed(nl_query)
         D, I = self.index.search(np.array([vec]), k)
         for dist, idx in zip(D[0], I[0]):
-            if idx < 0: continue
-            if self.cache[idx]['explain_flag'] != explain_flag:
-                continue  # Only return cache entry with matching explanation preference
+            if idx < 0:
+                continue
             similarity = 1 / (1 + dist)
             if similarity >= threshold:
                 return self.cache[idx]
         return None
 
-    def _cache_key(self, nl_query, explain_flag):
-        # Make the explanation flag part of the semantic meaning.
-        if explain_flag:
-            return f"{nl_query} [EXPLAIN]"
-        return nl_query
-
-# Create a singleton cache for app-wide use
+# Singleton
 semantic_cache = SemanticNL2SQLCache()
