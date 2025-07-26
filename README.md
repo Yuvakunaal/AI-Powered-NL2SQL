@@ -8,11 +8,12 @@ A full-stack AI-powered tool that allows anyone to **create tables**, **insert d
 ## 📦 What This Project Does
 
 The goal of NL2SQL Playground is to enable non-technical users and developers alike to:
-- Dynamically **create SQL tables** through intuitive UI or CLI.
-- **Insert values** using smart auto-generated forms.
-- **Ask natural language questions**, translated to SQL using LLMs.
-- **View results and the SQL** used transparently.
-- **Understand query generation** with **Chain-of-Thought explainability**, which provides step-by-step reasoning for every query.
+- Dynamically **create SQL tables** through intuitive UI or CLI
+- **Insert values** using smart auto-generated forms
+- **Ask natural language questions**, translated to SQL using LLMs
+- **View results and the SQL** used transparently
+- **Understand query generation** with **Chain-of-Thought explainability**, which provides step-by-step reasoning for every query
+- **Optimize performance** with a vectorized semantic cache for instant query responses and reduced API costs
 
 Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and accurate NL-to-SQL transformation.
 
@@ -26,6 +27,7 @@ Powered by **OpenRouter API** using **Mistral-7B-Instruct** model for secure and
 | 📥 Data Insertion | • UI: Select table → dynamically generated form based on schema fields<br>• CLI: Accepts CSV-style strings for batch insert |
 | 📊 Show Tables | • UI displays all created tables, including field names & datatypes |
 | ❓ NL-to-SQL Querying | • UI: Pick table → ask NL question → get SQL + result<br>• LLM: OpenRouter + Mistral-7B converts natural language into `SELECT` SQL<br>• Supports complex queries including joins<br>• **Chain-of-Thought explainability**: Returns step-by-step reasoning for each query<br>• Both SQL query and table output are shown |
+| 🚀 Optimization | • Vectorized semantic cache for NL2SQL queries<br>• Sub-100ms retrieval for previously seen or similar questions<br>• Reduces API call costs by reusing cached SQL<br>• Enhances user experience with instant responses<br>• Lays groundwork for federated caching and horizontal scaling |
 | 🧑‍💻 CLI Support | • Text prompts to create tables, insert data via CSV, and ask NL questions<br>• Built using Colorama and Tabulate for user-friendly experience |
 | 🛡 Security | • Blocks destructive SQL (`DROP`, `DELETE`, `UPDATE`, etc.)<br>• All execution uses parameterised `sqlalchemy.text` queries |
 | 🧪 Testing | • `test_api.py` covers full create → insert → query flow |
@@ -128,6 +130,7 @@ Flow:
 - **Gradio** – Beautiful web UI
 - **Colorama & Tabulate** – CLI styling
 - **Python** – Core logic and services
+- **FAISS** – Vector-based semantic cache for query optimization
 
 ---
 
