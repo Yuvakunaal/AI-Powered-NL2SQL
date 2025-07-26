@@ -10,3 +10,5 @@ python-multipart>=0.0.5
 tabulate
 colorama
 gradio
+faiss-cpu
+sentence-transformers

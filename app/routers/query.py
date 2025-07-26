@@ -7,6 +7,7 @@ from ..db.dynamic_models import schema_cache, get_db
 from ..llm.openrouter_client import openrouter_client
 from ..models.request_models import QueryRequest, QueryResponse, ErrorResponse
 from sqlalchemy import text
+from app.utils.semantic_cache import semantic_cache
 
 router = APIRouter(prefix="/api", tags=["query"])
 logger = logging.getLogger("app.routers.query")
@@ -99,6 +100,17 @@ def query_table(
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"Table '{tbl}' not found"
                 )
+        # <-- SET EXPLAIN FLAG FIRST!
+        explain = getattr(request, "explain", False)
+        cache_hit = semantic_cache.search(request.question, explain_flag=explain)
+        if cache_hit:
+            logger.info("Semantic cache HIT for NL query")
+            return {
+                "sql": cache_hit["sql"],
+                "results": cache_hit["result"],
+                "explanation": cache_hit.get("explanation", "(from cache)"),
+                "success": True,
+            }
         schemas = {tbl: schema_cache.get_table_schema(tbl) for tbl in table_names}
         rels = infer_relationships(table_names)
         schema_str = "\n".join(
@@ -143,6 +155,8 @@ def query_table(
         results = execute_sql_query(db, sql)
         if explanation:
             explanation = re.sub(r"[\s\}\]\)\>]+$", "", explanation.strip())
+            
+        semantic_cache.add(request.question, sql, results, explanation if explain else None, explain_flag=explain)
         return {
             "sql": sql,
             "results": results or [],

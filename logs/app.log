@@ -3796,3 +3796,124 @@ ValueError: Only SELECT queries are allowed.
 2025-07-26 01:14:50,547 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT users.username, products.name\nFROM users\nLEFT JOIN products ON users.id = products.id;\n\nExplanation:\n1. The question asks for a left join between the `users` and `products` tables on their respective `id` columns.\n2. A left join will return all rows from the left table (`users` in this case) and the matched rows from the right table (`products`). If there is no match, the right table will return NULL values.\n3. The `SELECT` statement selects the `username` from the `users` table and the `name` from the `products` table.\n4. The `FROM` clause specifies the tables involved in the join operation.\n5. The `LEFT JOIN` keyword is used to include all rows from the left table (`users`) and the matched rows from the right table (`products`).\n6. The `ON` clause specifies the condition for the join operation, which is that the `id` in both tables should match.'
 2025-07-26 01:15:13,211 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT users.username, products.name\nFROM users\nLEFT JOIN products\nON users.id = products.id;\n\nExplanation:\n1. The question asks for a left join between the users and products tables on their respective id columns.\n2. A left join will return all records from the left table (users) and the matched records from the right table (products). If there is no match, the right table's columns will be null.\n3. The SELECT statement selects the username from the users table and the name from the products table.\n4. The FROM clause specifies the tables involved in the join.\n5. The LEFT JOIN keyword is used to perform the left join operation.\n6. The ON clause defines the condition for the join, which is the id column in both tables."
 2025-07-26 01:15:29,873 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:42:46,657 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:42:46,757 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:42:47,278 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:42:47,280 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:43:18,453 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:43:18,454 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:43:28,188 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:44:09,608 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students;\n\nExplanation: To display all the students, we need to select all columns (*) from the students table. The FROM keyword is used to specify the table name (students).'
+2025-07-26 11:44:13,674 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:15,544 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:27,258 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students WHERE name = 'Alice';\n\nExplanation:\n1. The question asks for all students with the name 'Alice'.\n2. To achieve this in SQLite, we use the SELECT statement to retrieve data from the students table.\n3. We filter the results using the WHERE clause, specifying that we want rows where the name column is equal to 'Alice'.\n4. The asterisk (*) in the SELECT statement is used to select all columns from the students table.\n5. The resulting SQL query will return all rows from the students table where the name is 'Alice'."
+2025-07-26 11:44:27,259 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 152, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 11:44:40,124 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students WHERE name = 'Alice';\n\nExplanation:\n1. The question asks for all students with a name of 'Alice'.\n2. To achieve this, we need to select all columns from the students table where the name column matches 'Alice'.\n3. Therefore, the SQL query is SELECT * FROM students WHERE name = 'Alice'."
+2025-07-26 11:44:40,125 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 152, in query_table
+    validate_sql(sql)
+    ~~~~~~~~~~~~^^^^^
+  File "/Applications/NL2SQL/app/routers/query.py", line 21, in validate_sql
+    raise ValueError("Only SELECT queries are allowed.")
+ValueError: Only SELECT queries are allowed.
+2025-07-26 11:44:45,827 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students WHERE name = 'Alice';"
+2025-07-26 11:44:48,189 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:49,447 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:50,139 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:53,797 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:44:56,032 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:46:24,230 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:46:24,894 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:46:26,815 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:46:26,863 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:46:26,886 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:46:26,889 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:46:29,862 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:46:29,862 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:46:33,446 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:46:47,894 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:46:48,573 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:46:48,635 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:46:48,648 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:46:48,651 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:46:51,325 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:46:51,325 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:46:55,018 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:46:58,553 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:46:59,150 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:46:59,207 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:46:59,219 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:46:59,222 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:47:01,668 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:47:01,668 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:47:05,896 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:47:08,422 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:47:09,059 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:47:09,119 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:47:09,131 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:47:09,133 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:47:11,588 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:47:11,588 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:47:15,327 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:47:53,011 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:47:53,647 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:47:53,715 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:47:53,728 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:47:53,731 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:47:56,477 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:47:56,477 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:48:01,224 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:48:07,791 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:48:08,442 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:48:08,501 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:48:08,513 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:48:08,515 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:48:10,978 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:48:10,978 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:48:14,468 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:48:16,389 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:48:17,648 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:48:17,713 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:48:17,734 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:48:17,737 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:48:20,436 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:48:20,436 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:48:24,751 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:48:48,740 - app.routers.query - ERROR - Error processing query
+Traceback (most recent call last):
+  File "/Applications/NL2SQL/app/routers/query.py", line 103, in query_table
+    cache_hit = semantic_cache.search(request.question, explain_flag=explain)
+                                                                     ^^^^^^^
+UnboundLocalError: cannot access local variable 'explain' where it is not associated with a value
+2025-07-26 11:50:26,186 - root - INFO - NL2SQL Playground API is shutting down...
+2025-07-26 11:50:26,806 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:50:26,867 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:50:26,879 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:50:26,882 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:50:29,730 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:50:29,730 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:50:33,882 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:50:34,591 - app.db.dynamic_models - INFO - Database initialized
+2025-07-26 11:50:34,653 - faiss.loader - INFO - Loading faiss.
+2025-07-26 11:50:34,674 - faiss.loader - INFO - Successfully loaded faiss.
+2025-07-26 11:50:34,677 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-07-26 11:50:37,173 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2025-07-26 11:50:37,173 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:50:40,500 - root - INFO - NL2SQL Playground API is starting up...
+2025-07-26 11:50:53,886 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students;'
+2025-07-26 11:51:00,872 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students;\n\nExplanation:\n1. The question asks for all students, which implies we need to select all records from the students table.\n2. Since there are no relationships defined in the provided schema, we only need to query the students table.\n3. The SELECT statement is used to retrieve data from the table, and the asterisk (*) is used to select all columns. The FROM clause specifies the table from which we want to retrieve the data.'
+2025-07-26 11:51:04,409 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:51:06,351 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:51:08,129 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:51:18,969 - app.routers.query - INFO - LLM RAW RESPONSE: 'SELECT * FROM students ORDER BY age ASC;'
+2025-07-26 11:51:22,967 - app.routers.query - INFO - LLM RAW RESPONSE: "SELECT * FROM students ORDER BY age ASC;\n\nExplanation:\n1. The question asks for all students, so we need to select all records from the students table.\n2. The question asks for the students in ascending order of age, so we need to add an ORDER BY clause with the 'age' column and the ASC keyword."
+2025-07-26 11:51:27,365 - app.routers.query - INFO - Semantic cache HIT for NL query
+2025-07-26 11:51:28,611 - app.routers.query - INFO - Semantic cache HIT for NL query

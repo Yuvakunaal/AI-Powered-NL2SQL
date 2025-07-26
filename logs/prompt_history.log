@@ -3154,3 +3154,178 @@ Explanation:
 6. The ON clause defines the condition for the join, which is the id column in both tables.
 --------------------------------------------------------------------------------
 
+[2025-07-26T06:14:09.606813
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, using only the provided schema.
+
+Instructions:
+1. First, explain your reasoning step-by-step for mapping the question to SQL.
+2. Then output only the correct SQLite SELECT query.
+3. Format:
+Explanation:<YOUR EXPLANATION>
+SQL:<YOUR SQL>
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+display all the students
+Explanation:
+SQL:
+Generated SQL: SELECT * FROM students;
+
+Explanation: To display all the students, we need to select all columns (*) from the students table. The FROM keyword is used to specify the table name (students).
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:14:27.257745
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, using only the provided schema.
+
+Instructions:
+1. First, explain your reasoning step-by-step for mapping the question to SQL.
+2. Then output only the correct SQLite SELECT query.
+3. Format:
+Explanation:<YOUR EXPLANATION>
+SQL:<YOUR SQL>
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+display all the students with name Alice
+Explanation:
+SQL:
+Generated SQL: SELECT * FROM students WHERE name = 'Alice';
+
+Explanation:
+1. The question asks for all students with the name 'Alice'.
+2. To achieve this in SQLite, we use the SELECT statement to retrieve data from the students table.
+3. We filter the results using the WHERE clause, specifying that we want rows where the name column is equal to 'Alice'.
+4. The asterisk (*) in the SELECT statement is used to select all columns from the students table.
+5. The resulting SQL query will return all rows from the students table where the name is 'Alice'.
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:14:40.124322
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, using only the provided schema.
+
+Instructions:
+1. First, explain your reasoning step-by-step for mapping the question to SQL.
+2. Then output only the correct SQLite SELECT query.
+3. Format:
+Explanation:<YOUR EXPLANATION>
+SQL:<YOUR SQL>
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+show all the students with name = Alice
+Explanation:
+SQL:
+Generated SQL: SELECT * FROM students WHERE name = 'Alice';
+
+Explanation:
+1. The question asks for all students with a name of 'Alice'.
+2. To achieve this, we need to select all columns from the students table where the name column matches 'Alice'.
+3. Therefore, the SQL query is SELECT * FROM students WHERE name = 'Alice'.
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:14:45.827303
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert the user’s question to a valid SQLite SELECT statement ONLY, using only the schema provided. Output only the final SQL statement and nothing else.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+show all the students with name = Alice
+SQL:
+Generated SQL: SELECT * FROM students WHERE name = 'Alice';
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:20:53.884840
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert the user’s question to a valid SQLite SELECT statement ONLY, using only the schema provided. Output only the final SQL statement and nothing else.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Give all students
+SQL:
+Generated SQL: SELECT * FROM students;
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:21:00.872269
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, using only the provided schema.
+
+Instructions:
+1. First, explain your reasoning step-by-step for mapping the question to SQL.
+2. Then output only the correct SQLite SELECT query.
+3. Format:
+Explanation:<YOUR EXPLANATION>
+SQL:<YOUR SQL>
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Give all students
+Explanation:
+SQL:
+Generated SQL: SELECT * FROM students;
+
+Explanation:
+1. The question asks for all students, which implies we need to select all records from the students table.
+2. Since there are no relationships defined in the provided schema, we only need to query the students table.
+3. The SELECT statement is used to retrieve data from the table, and the asterisk (*) is used to select all columns. The FROM clause specifies the table from which we want to retrieve the data.
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:21:18.968840
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert the user’s question to a valid SQLite SELECT statement ONLY, using only the schema provided. Output only the final SQL statement and nothing else.
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Give all students in age ascending order
+SQL:
+Generated SQL: SELECT * FROM students ORDER BY age ASC;
+--------------------------------------------------------------------------------
+
+[2025-07-26T06:21:22.967339
+Model: mistralai/mistral-7b-instruct
+Prompt: You are a world-class SQLite expert. Convert user's question into valid, efficient SQLite SELECT statements, using only the provided schema.
+
+Instructions:
+1. First, explain your reasoning step-by-step for mapping the question to SQL.
+2. Then output only the correct SQLite SELECT query.
+3. Format:
+Explanation:<YOUR EXPLANATION>
+SQL:<YOUR SQL>
+
+Tables:
+students(id(int), name(text), age(int), gpa(float))
+Relationships:
+None
+Question:
+Give all students in age ascending order
+Explanation:
+SQL:
+Generated SQL: SELECT * FROM students ORDER BY age ASC;
+
+Explanation:
+1. The question asks for all students, so we need to select all records from the students table.
+2. The question asks for the students in ascending order of age, so we need to add an ORDER BY clause with the 'age' column and the ASC keyword.
+--------------------------------------------------------------------------------
+
